@@ -4,10 +4,10 @@ function Footer(){
     return(
         <div style= {{textAlign:"center",
         color:"white",
-        backgroundColor:'#1779ba',
+        backgroundColor:"black",
         margin:'0px',
         padding: '1px'}}>
-            <p>All &copy; Rights Reserved | Citizen's Bank</p>
+            <p>All &copy; Rights Reserved | Citizens Bank</p>
 
         </div>
     );

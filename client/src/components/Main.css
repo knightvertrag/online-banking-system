@@ -1,13 +1,14 @@
 
 .subnav-hero-section {
     text-align: center;
-    background: #1779ba;
+    background: black;
     background-size: cover;
     position: relative;
     overflow: visible;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: flex;
+
     -webkit-align-items: center;
         -ms-flex-align: center;
             align-items: center;
