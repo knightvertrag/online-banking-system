@@ -10,19 +10,12 @@ import com.wellsfargo.training.onlineBankingSystem.repository.CustomerRepository
 
 import jakarta.transaction.Transactional;
 
-@Service
-@Transactional
-public class CustomerService {
+
+public interface CustomerService {
+
 	
-	@Autowired
-	private CustomerRepository crepo;
+	public Customer registerCustomer(Customer c);
 	
-	public Customer registerCustomer(Customer c) {
-		return crepo.save(c);
-	}
-	
-	public Optional<Customer> loginCustomer(Long cust_id){
-		return crepo.findById(cust_id);
-	}
+	public Optional<Customer> loginCustomer(Long cust_id);
 
 }

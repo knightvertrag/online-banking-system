@@ -17,14 +17,14 @@ import com.wellsfargo.training.onlineBankingSystem.service.CustomerService;
 public class CustomerController {
 	
 	@Autowired
-	private CustomerService cservice;
+	private CustomerService customerService;
 	
 	@PostMapping("/register")
 	public ResponseEntity<String> createCustomer(@Validated @RequestBody Customer customer){
 		try {
 			
 			
-			Customer registeredCustomer = cservice.registerCustomer(customer);
+			Customer registeredCustomer = customerService.registerCustomer(customer);
 			if(registeredCustomer!=null) {
 				return ResponseEntity.ok("Registration Successfull");
 				}
@@ -42,7 +42,7 @@ public class CustomerController {
 		Long cust_id=customer.getCust_id();
 		String password=customer.getPassword();
 		
-		Customer c= cservice.loginCustomer(cust_id).orElseThrow(()->
+		Customer c= customerService.loginCustomer(cust_id).orElseThrow(()->
 		new NoSuchCustomerExistsException("Customer Not Found for this ID::"));
 		
 		if(cust_id.equals(c.getCust_id()) && password.equals(c.getPassword()))
