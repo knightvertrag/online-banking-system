@@ -1,0 +1,31 @@
+@media all and (max-width: 489px) {
+    .menu-active {
+      width: 60%;
+    }
+  }
+  
+  @media all and (min-width: 490px) and (max-width: 767px) {
+    .menu-active {
+      width: 40%;
+    }
+  }
+  
+  @media all and (min-width: 768px) and (max-width: 1024px) {
+    .menu-active {
+      width: 30%;
+    }
+  }
+  @media all and (max-width: 1023px) {
+    .menu {
+      min-height: 100vh;
+    height: 100%
+    }
+  }
+  @media all and (min-width: 1024px) {
+    .menu {
+      position: static;
+      overflow: visible;
+      width: auto;
+      height: auto;
+    }
+  }
