@@ -2,15 +2,20 @@ package com.wellsfargo.training.onlineBankingSystem.model;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 
 
@@ -44,6 +49,9 @@ public class Customer {
 	
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dob;
+	
+	@OneToMany(cascade=CascadeType.PERSIST ,mappedBy="customer")
+	private List<Account> accounts = new ArrayList<Account>();
 	
 	
 	
@@ -162,6 +170,18 @@ public class Customer {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+
+
+
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
 	}
 	
 	
