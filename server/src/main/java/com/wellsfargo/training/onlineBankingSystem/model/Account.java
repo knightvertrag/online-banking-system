@@ -14,7 +14,7 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY,generator="acc_seq")
 	@Column(name="account_no")
-	private Long acc_no;
+	private Long accNo;
 	
 	@Column(nullable=false)
 	private String log_pass;
@@ -28,7 +28,7 @@ public class Account {
 	@Column(nullable=false)
 	private int isActive;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="cust_id",nullable=false)
 	@JsonIgnore
 	private Customer customer;
@@ -46,7 +46,7 @@ public class Account {
 	
 
 	public Account(Long acc_no, String log_pass, String trans_pass, long balance, int isActive, Customer customer) {
-		this.acc_no = acc_no;
+		this.accNo = acc_no;
 		this.log_pass = log_pass;
 		this.trans_pass = trans_pass;
 		this.balance = balance;
@@ -56,12 +56,12 @@ public class Account {
 
 
 
-	public Long getAcc_no() {
-		return acc_no;
+	public Long getAccNo() {
+		return accNo;
 	}
 
-	public void setAcc_no(Long acc_no) {
-		this.acc_no = acc_no;
+	public void setAccNo(Long acc_no) {
+		this.accNo = acc_no;
 	}
 
 	public String getLog_pass() {
