@@ -3,6 +3,7 @@ package com.wellsfargo.training.onlineBankingSystem.model;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -29,6 +30,7 @@ public class Account {
 	
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="cust_id",nullable=false)
+	@JsonIgnore
 	private Customer customer;
 	
 	

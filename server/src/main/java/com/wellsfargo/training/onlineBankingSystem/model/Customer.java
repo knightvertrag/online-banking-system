@@ -25,7 +25,8 @@ public class Customer {
 	@SequenceGenerator(name="customer_seq",initialValue = 1000,allocationSize = 1)
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY,generator="customer_seq")
-    private Long cust_id;
+	@Column(name = "cust_id")
+    private Long custId;
 	
 	@Column(nullable=false)
     private String firstName;
@@ -50,8 +51,8 @@ public class Customer {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dob;
 	
-	@OneToMany(cascade=CascadeType.PERSIST ,mappedBy="customer")
-	private List<Account> accounts = new ArrayList<Account>();
+	@OneToMany(cascade=CascadeType.ALL ,mappedBy="customer")
+	private List<Account> accounts;
 	
 	
 	
@@ -62,14 +63,14 @@ public class Customer {
 
 
 
-	public Long getCust_id() {
-		return cust_id;
+	public Long getCustId() {
+		return custId;
 	}
 
 
 
-	public void setCust_id(Long cust_id) {
-		this.cust_id = cust_id;
+	public void setCustId(Long cust_id) {
+		this.custId = cust_id;
 	}
 
 

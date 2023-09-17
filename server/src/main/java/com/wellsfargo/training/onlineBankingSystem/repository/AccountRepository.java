@@ -6,8 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.wellsfargo.training.onlineBankingSystem.model.Account;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface AccountRepository extends JpaRepository<Account, Long>{
-	@Query("SELECT a FROM Account a WHERE a.customer.cust_id=:custId ") 
-	public List<Account> findAccountsByCustId(Long custId);
+	@Query("SELECT a FROM Account a WHERE a.customer.custId=:custId ")
+	public List<Account> findByCustId(Long custId);
 }

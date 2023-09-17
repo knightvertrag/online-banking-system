@@ -21,13 +21,14 @@ public class AccountService {
 
 	@Autowired
 	private AccountRepository accRepository;
+	@Autowired
 	private CustomerRepository custRepository;
 	
-	@Autowired
-	public AccountService(AccountRepository accRepository, CustomerRepository custRepository) {
-		this.accRepository=accRepository;
-		this.custRepository=custRepository;
-	}
+//	@Autowired
+//	public AccountService(AccountRepository accRepository, CustomerRepository custRepository) {
+//		this.accRepository=accRepository;
+//		this.custRepository=custRepository;
+//	}
 	
 	
 	public Account createAccount(Long custId,Account account) throws NoSuchCustomerExistsException {
@@ -36,7 +37,7 @@ public class AccountService {
 		if(customer.isPresent()) {
 			Customer loggedInCustomer=customer.get();
 			account.setCustomer(loggedInCustomer);
-			loggedInCustomer.getAccounts().add(account);
+//			loggedInCustomer.getAccounts().add(account);
 			//custRepository.save(loggedInCustomer);
 			return accRepository.save(account);
 		}
@@ -47,7 +48,7 @@ public class AccountService {
 	}
 	
 	public ResponseEntity<List<Account>> getAllAccounts(Long custId){
-		List<Account> accounts = accRepository.findAccountsByCustId(custId);
+		List<Account> accounts = accRepository.findByCustId(custId);
 		if(accounts.isEmpty())
 			return ResponseEntity.notFound().build();
 		
