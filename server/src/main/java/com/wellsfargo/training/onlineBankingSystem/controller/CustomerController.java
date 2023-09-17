@@ -39,13 +39,13 @@ public class CustomerController {
 	@PostMapping("/loginCustomer")
 	public Boolean loginCustomer(@Validated @RequestBody Customer customer) throws NoSuchCustomerExistsException {
 		Boolean isLoggedIn=false;
-		Long cust_id=customer.getCust_id();
+		Long cust_id=customer.getCustId();
 		String password=customer.getPassword();
 		
 		Customer c= customerService.loginCustomer(cust_id).orElseThrow(()->
 		new NoSuchCustomerExistsException("Customer Not Found for this ID::"));
 		
-		if(cust_id.equals(c.getCust_id()) && password.equals(c.getPassword()))
+		if(cust_id.equals(c.getCustId()) && password.equals(c.getPassword()))
 				{
 					isLoggedIn=true;
 				}
