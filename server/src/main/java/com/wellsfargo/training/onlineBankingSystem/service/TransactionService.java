@@ -1,6 +1,7 @@
 package com.wellsfargo.training.onlineBankingSystem.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,10 @@ public class TransactionService {
 		return transaction;
 			
 		
+	}
+	
+	public List<Transaction> getTransactionHistoryByAccount(Long AccountNo){
+		return transRepository.findBySenderAccountAccNoOrReceiverAccountAccNo(AccountNo, AccountNo);
 	}
 
 	

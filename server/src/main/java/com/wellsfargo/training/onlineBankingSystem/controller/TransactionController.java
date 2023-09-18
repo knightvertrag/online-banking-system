@@ -1,8 +1,12 @@
 package com.wellsfargo.training.onlineBankingSystem.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +36,12 @@ public class TransactionController {
 		
 		return ResponseEntity.ok(newTransaction);
 		
+	}
+	
+	@GetMapping("/transactions/{accNo}")
+	public ResponseEntity<List<Transaction>> getTransactions(@PathVariable Long accNo){
+		List<Transaction> transactions=transService.getTransactionHistoryByAccount(accNo);
+		return ResponseEntity.ok(transactions);
 	}
 	
 }
