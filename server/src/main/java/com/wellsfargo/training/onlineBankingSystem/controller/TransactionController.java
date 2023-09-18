@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wellsfargo.training.onlineBankingSystem.exception.IncorrectTransactionPasswordException;
 import com.wellsfargo.training.onlineBankingSystem.exception.InsufficientBalanceException;
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
 import com.wellsfargo.training.onlineBankingSystem.model.Account;
@@ -28,11 +29,12 @@ public class TransactionController {
 	
 	
 	@PostMapping("/createTransaction")
-	public ResponseEntity<Transaction> createTransaction(@Validated @RequestBody TransactionRequest transactionRequest) throws NoSuchAccountExistsException, InsufficientBalanceException{
+	public ResponseEntity<Transaction> createTransaction(@Validated @RequestBody TransactionRequest transactionRequest) throws NoSuchAccountExistsException, InsufficientBalanceException, IncorrectTransactionPasswordException{
 		Long amount=transactionRequest.getAmount();
 		Long senderAcc=transactionRequest.getSenderAccountNo();
 		Long receiverAcc=transactionRequest.getReceiverAccountNo();
-		Transaction newTransaction = transService.createTransaction(amount, senderAcc, receiverAcc);
+		String transPassword=transactionRequest.getTransPassword();
+		Transaction newTransaction = transService.createTransaction(amount, senderAcc, receiverAcc,transPassword);
 		
 		return ResponseEntity.ok(newTransaction);
 		
