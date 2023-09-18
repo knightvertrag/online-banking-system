@@ -39,7 +39,7 @@ public class TransactionController {
 	}
 	
 	@GetMapping("/transactions/{accNo}")
-	public ResponseEntity<List<Transaction>> getTransactions(@PathVariable Long accNo){
+	public ResponseEntity<List<Transaction>> getTransactions(@PathVariable Long accNo) throws NoSuchAccountExistsException{
 		List<Transaction> transactions=transService.getTransactionHistoryByAccount(accNo);
 		return ResponseEntity.ok(transactions);
 	}

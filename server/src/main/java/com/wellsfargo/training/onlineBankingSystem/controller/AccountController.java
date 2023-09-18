@@ -17,12 +17,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
+import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchCustomerExistsException;
 import com.wellsfargo.training.onlineBankingSystem.model.Account;
+import com.wellsfargo.training.onlineBankingSystem.model.Customer;
+import com.wellsfargo.training.onlineBankingSystem.repository.CustomerRepository;
 import com.wellsfargo.training.onlineBankingSystem.service.AccountService;
 
 @RestController
 @RequestMapping(value="/accounts")
 public class AccountController {
+	
+	@Autowired
+	private CustomerRepository custRepository;
 
 	@Autowired
 	private AccountService accService;
@@ -45,8 +51,13 @@ try {
 	}
 	
 	@GetMapping("/getAccounts/{custId}")
-	public ResponseEntity<List<Account>> getAllAccounts(@PathVariable Long custId){
-		return accService.getAllAccounts(custId);
+	public ResponseEntity<List<Account>> getAllAccounts(@PathVariable Long custId) throws NoSuchCustomerExistsException{
+		
+		Optional<Customer> customer= custRepository.findById(custId);
+		if(customer.isPresent())
+			return accService.getAllAccounts(custId);
+		else
+			throw new NoSuchCustomerExistsException("Customer Not found with this Id : "+custId);
 	}
 	
 	
