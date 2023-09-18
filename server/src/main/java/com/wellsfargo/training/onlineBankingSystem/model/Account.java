@@ -2,6 +2,7 @@ package com.wellsfargo.training.onlineBankingSystem.model;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -33,7 +34,11 @@ public class Account {
 	@JsonIgnore
 	private Customer customer;
 	
+	@OneToMany(mappedBy = "senderAccount" , cascade = CascadeType.ALL)
+	private List<Transaction> senttransactions;
 	
+	@OneToMany(mappedBy = "receiverAccount" , cascade = CascadeType.ALL)
+	private List<Transaction> receivedtransactions;
 	
 	
 
