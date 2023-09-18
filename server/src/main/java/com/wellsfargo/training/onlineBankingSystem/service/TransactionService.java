@@ -3,6 +3,7 @@ package com.wellsfargo.training.onlineBankingSystem.service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wellsfargo.training.onlineBankingSystem.exception.InsufficientBalanceException;
@@ -17,10 +18,11 @@ import jakarta.transaction.Transactional;
 @Service
 @Transactional
 public class TransactionService {
-	
+	@Autowired
 	private  TransactionRepository transRepository;
+	@Autowired
 	private AccountRepository accRepository;
-	
+	@Autowired
 	private AccountService accService;
 	
 	public Transaction createTransaction(Long amount, Long senderAccountNo , Long receiverAccountNo) throws NoSuchAccountExistsException, InsufficientBalanceException {
