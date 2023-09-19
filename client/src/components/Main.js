@@ -1,5 +1,7 @@
-import React from "react";
-import "./Main.css";
+import React from "
+
+import * as styles from "./Main.css";
+
 
 const Main = () => {
   return (
@@ -28,5 +30,6 @@ const Main = () => {
     </div>
   );
 };
+
 
 export default Main;
