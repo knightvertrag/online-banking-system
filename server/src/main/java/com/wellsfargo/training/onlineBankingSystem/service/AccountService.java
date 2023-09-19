@@ -56,4 +56,12 @@ public class AccountService {
 		
 	}
 	
+	public Optional<Account> getSingleAccount(long accNo){
+		return accRepository.findByAccNo(accNo);
+	}
+	
+	public void deleteAccount(Long accNo) {
+		accRepository.deleteByAccNo(accNo);
+	}
+	
 }

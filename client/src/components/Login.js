@@ -17,23 +17,21 @@ const Login = () => {
       setErrorMessage('Please Enter both CustomerId and Password');
       return;
     }
-    const customer = { cust_id, password };
+    const customer = { cust_id: parseInt(cust_id), password };
 
     try {
       const loginSuccess = await AuthenticationService.login(customer);
       console.log('API response: ', loginSuccess);
       if (loginSuccess) {
+        localStorage.setItem("cust_id", cust_id);
         setSuccessMessage('Login successful, redirecting');
         setTimeout(() => {
-          history("/register");
+          history("/openaccount");
         }, 3000);
-
-
       }
       else {
         setErrorMessage("Invalid Customer or Password");
       }
-
     }
     catch (error) {
       console.error('Login error: ', error);

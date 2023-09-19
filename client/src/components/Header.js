@@ -12,16 +12,26 @@ const Header = () => {
         </div>
 
         <ul className="navbar-nav ml-auto d-flex flex-row">
-          <li className="nav-item p-2">
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item p-2">
-            <Link className="nav-link" to="/register">
-              Register
-            </Link>
-          </li>
+          {localStorage.getItem("cust_id") ? (
+            <li className="nav-item p-2">
+              <Link className="nav-link" to="/openaccount">
+                Open account
+              </Link>
+            </li>
+          ) : (
+            <>
+              <li className="nav-item p-2">
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item p-2">
+                <Link className="nav-link" to="/register">
+                  Register
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
