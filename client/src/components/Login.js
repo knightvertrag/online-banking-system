@@ -7,17 +7,17 @@ const Login = () => {
 
   const history = useNavigate();
 
-  const [cust_id, setcust_id] = useState('');
+  const [custId, setcustId] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleLogin = async () => {
-    if (!cust_id || !password) {
+    if (!custId || !password) {
       setErrorMessage('Please Enter both CustomerId and Password');
       return;
     }
-    const customer = { cust_id: parseInt(cust_id), password };
+    const customer = { custId, password };
 
     try {
       const loginSuccess = await AuthenticationService.login(customer);
@@ -42,6 +42,7 @@ const Login = () => {
     <div className="d-flex justify-content-center flex-column text-left">
       <div className="auth-inner m-5">
         
+
           <h3>Log In</h3>
           <div className="mb-3">
             <label>Customer ID</label>
@@ -49,8 +50,10 @@ const Login = () => {
               type="text"
               className="form-control"
               placeholder="Enter Customer ID"
-              value={cust_id}
-              onChange={(e) => setcust_id(e.target.value)}
+
+              value={custId}
+              onChange={(e) => setcustId(e.target.value)}
+
             />
           </div>
           <div className="mb-3">
@@ -59,6 +62,7 @@ const Login = () => {
               type="password"
               className="form-control"
               placeholder="Enter password"
+
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -72,6 +76,7 @@ const Login = () => {
             {successMessage && <p className='successMessage'>{successMessage}</p>}
           </div>
         
+
       </div>
     </div>
   );

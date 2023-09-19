@@ -11,6 +11,7 @@ const Header = () => {
           </Link>
         </div>
 
+<div className="btn-group">
         <ul className="navbar-nav ml-auto d-flex flex-row">
           {localStorage.getItem("cust_id") ? (
             <li className="nav-item p-2">
@@ -33,6 +34,8 @@ const Header = () => {
             </>
           )}
         </ul>
+        </div>
+
       </div>
     </nav>
   );

@@ -1,5 +1,8 @@
 package com.wellsfargo.training.onlineBankingSystem.model;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 public class TransactionRequest {
 
 	private Long amount;
@@ -37,7 +40,11 @@ public class TransactionRequest {
 		return transPassword;
 	}
 	public void setTransPassword(String transPassword) {
-		this.transPassword = transPassword;
+		Base64.Encoder encoder = Base64.getEncoder();  
+        String normalString = transPassword;
+        String encodedString = encoder.encodeToString(   // encrypt password in database field
+        normalString.getBytes(StandardCharsets.UTF_8) );
+        this.transPassword = encodedString;
 	}
 	
 	
