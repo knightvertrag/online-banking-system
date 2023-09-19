@@ -44,6 +44,7 @@ const Login = () => {
     <div className="d-flex justify-content-center flex-column text-left">
       <div className="auth-inner m-5">
         
+
           <h3>Log In</h3>
           <div className="mb-3">
             <label>Customer ID</label>
@@ -51,8 +52,10 @@ const Login = () => {
               type="text"
               className="form-control"
               placeholder="Enter Customer ID"
+
               value={custId}
               onChange={(e) => setcustId(e.target.value)}
+
             />
           </div>
           <div className="mb-3">
@@ -61,6 +64,7 @@ const Login = () => {
               type="password"
               className="form-control"
               placeholder="Enter password"
+
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -74,6 +78,7 @@ const Login = () => {
             {successMessage && <p className='successMessage'>{successMessage}</p>}
           </div>
         
+
       </div>
     </div>
   );

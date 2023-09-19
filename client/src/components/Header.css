@@ -17,8 +17,10 @@
   }
   @media all and (max-width: 1023px) {
     .menu {
+
       min-height: 80vh;
     height: 80%
+
     }
   }
   @media all and (min-width: 1024px) {
