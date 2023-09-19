@@ -2,6 +2,7 @@ package com.wellsfargo.training.onlineBankingSystem.model;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -14,13 +15,13 @@ public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY,generator="acc_seq")
 	@Column(name="account_no")
-	private Long acc_no;
+	private Long accNo;
+	
+//	@Column(nullable=false)
+//	private String log_pass;
 	
 	@Column(nullable=false)
-	private String log_pass;
-	
-	@Column(nullable=false)
-	private String trans_pass;
+	private String transPassword;
 	
 	@Column(nullable=false)
 	private long balance;
@@ -28,12 +29,16 @@ public class Account {
 	@Column(nullable=false)
 	private int isActive;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name="cust_id",nullable=false)
 	@JsonIgnore
 	private Customer customer;
 	
+	@OneToMany(mappedBy = "senderAccount" , cascade = CascadeType.ALL)
+	private List<Transaction> senttransactions;
 	
+	@OneToMany(mappedBy = "receiverAccount" , cascade = CascadeType.ALL)
+	private List<Transaction> receivedtransactions;
 	
 	
 
@@ -45,10 +50,10 @@ public class Account {
 	
 	
 
-	public Account(Long acc_no, String log_pass, String trans_pass, long balance, int isActive, Customer customer) {
-		this.acc_no = acc_no;
-		this.log_pass = log_pass;
-		this.trans_pass = trans_pass;
+	public Account(Long acc_no, String trans_pass, long balance, int isActive, Customer customer) {
+		this.accNo = acc_no;
+//		this.log_pass = log_pass;
+		this.transPassword = trans_pass;
 		this.balance = balance;
 		this.isActive = isActive;
 		this.customer = customer;
@@ -56,38 +61,38 @@ public class Account {
 
 
 
-	public Long getAcc_no() {
-		return acc_no;
+	public Long getAccNo() {
+		return accNo;
 	}
 
-	public void setAcc_no(Long acc_no) {
-		this.acc_no = acc_no;
+	public void setAccNo(Long acc_no) {
+		this.accNo = acc_no;
 	}
 
-	public String getLog_pass() {
-		return log_pass;
+//	public String getLog_pass() {
+//		return log_pass;
+//	}
+
+//	public void setLog_pass(String log_pass) {
+//		
+//		Base64.Encoder encoder = Base64.getEncoder();  
+//        String normalString = log_pass;
+//        String encodedString = encoder.encodeToString(   // encrypt password in database field
+//        normalString.getBytes(StandardCharsets.UTF_8) );
+//        this.log_pass = encodedString;
+//	
+//	}
+
+	public String getTransPassword() {
+		return transPassword;
 	}
 
-	public void setLog_pass(String log_pass) {
-		
-		Base64.Encoder encoder = Base64.getEncoder();  
-        String normalString = log_pass;
-        String encodedString = encoder.encodeToString(   // encrypt password in database field
-        normalString.getBytes(StandardCharsets.UTF_8) );
-        this.log_pass = encodedString;
-	
-	}
-
-	public String getTrans_pass() {
-		return trans_pass;
-	}
-
-	public void setTrans_pass(String trans_pass) {
+	public void setTransPassword(String trans_pass) {
 		Base64.Encoder encoder = Base64.getEncoder();  
         String normalString = trans_pass;
         String encodedString = encoder.encodeToString(   // encrypt password in database field
         normalString.getBytes(StandardCharsets.UTF_8) );
-        this.trans_pass = encodedString;
+        this.transPassword = encodedString;
 	}
 
 	public long getBalance() {

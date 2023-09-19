@@ -14,7 +14,7 @@
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-  height: 200px;
+  height: 100px;
 }
 
 .subnav-hero-section .subnav-hero-headline {
@@ -29,3 +29,4 @@
   bottom: 0;
   width: 100%;
 }
+

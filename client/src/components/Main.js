@@ -1,5 +1,6 @@
 import React from "react";
-import "./Main.css";
+import * as styles from "./Main.css";
+
 
 const Main = () => {
   return (
