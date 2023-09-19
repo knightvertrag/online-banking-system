@@ -34,7 +34,7 @@ public class TransactionService {
 		Account receiverAccount = accService.getSingleAccount(receiverAccountNo).orElseThrow(()->
 		new NoSuchAccountExistsException("Receiver Account Not found"));
 		
-		if(senderAccount.getTransPassword()!=transPassword) {
+		if(!transPassword.equals(senderAccount.getTransPassword())) {
 			throw new IncorrectTransactionPasswordException("Incorrect Transaction Password");
 		}
 		
