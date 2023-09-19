@@ -13,9 +13,11 @@ import jakarta.transaction.Transactional;
 
 public interface CustomerService {
 
-	
 	public Customer registerCustomer(Customer c);
 	
 	public Optional<Customer> loginCustomer(Long cust_id);
+	
+	public Optional<Customer> fetchCustomerDetails(Long custId);
+
 
 }

@@ -19,4 +19,8 @@ public class CustomerServiceImpl implements CustomerService {
     public Optional<Customer> loginCustomer(Long cust_id){
         return crepo.findById(cust_id);
     }
+    
+    public Optional<Customer> fetchCustomerDetails(Long custId) {
+		return crepo.findById(custId);
+	}
 }
