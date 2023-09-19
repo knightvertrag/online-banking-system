@@ -7,17 +7,17 @@ const Login = () => {
 
   const history = useNavigate();
 
-  const [cust_id, setcust_id] = useState('');
+  const [custId, setcustId] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleLogin = async () => {
-    if (!cust_id || !password) {
+    if (!custId || !password) {
       setErrorMessage('Please Enter both CustomerId and Password');
       return;
     }
-    const customer = { cust_id, password };
+    const customer = { custId, password };
 
     try {
       const loginSuccess = await AuthenticationService.login(customer);
@@ -51,8 +51,8 @@ const Login = () => {
               type="text"
               className="form-control"
               placeholder="Enter Customer ID"
-              value={cust_id}
-              onChange={(e) => setcust_id(e.target.value)}
+              value={custId}
+              onChange={(e) => setcustId(e.target.value)}
             />
           </div>
           <div className="mb-3">
