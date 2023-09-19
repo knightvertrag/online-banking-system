@@ -1,11 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Auth.css";
+import { useNavigate } from "react-router-dom";
+import AuthenticationService from "../service/AuthenticationService";
 
 const Login = () => {
+
+  const history = useNavigate();
+
+  const [custId, setcustId] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handleLogin = async () => {
+    if (!custId || !password) {
+      setErrorMessage('Please Enter both CustomerId and Password');
+      return;
+    }
+    const customer = { custId, password };
+
+    try {
+      const loginSuccess = await AuthenticationService.login(customer);
+      console.log('API response: ', loginSuccess);
+      if (loginSuccess) {
+        setSuccessMessage('Login successful, redirecting');
+        setTimeout(() => {
+          history("/register");
+        }, 3000);
+
+
+      }
+      else {
+        setErrorMessage("Invalid Customer or Password");
+      }
+
+    }
+    catch (error) {
+      console.error('Login error: ', error);
+      setErrorMessage('An error occured during login');
+    }
+  }
   return (
     <div className="d-flex justify-content-center flex-column text-left">
       <div className="auth-inner m-5">
-        <form>
+        
           <h3>Log In</h3>
           <div className="mb-3">
             <label>Customer ID</label>
@@ -13,6 +51,8 @@ const Login = () => {
               type="text"
               className="form-control"
               placeholder="Enter Customer ID"
+              value={custId}
+              onChange={(e) => setcustId(e.target.value)}
             />
           </div>
           <div className="mb-3">
@@ -21,14 +61,19 @@ const Login = () => {
               type="password"
               className="form-control"
               placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <div className="d-grid">
-            <button type="submit" className="btn btn-primary">
-              Submit
+            <button type="submit" className="btn btn-primary" onClick={handleLogin}>
+              Login
             </button>
+
+            {errorMessage && <p className='error-message'>{errorMessage}</p>}
+            {successMessage && <p className='successMessage'>{successMessage}</p>}
           </div>
-        </form>
+        
       </div>
     </div>
   );
