@@ -6,6 +6,8 @@ import Footer from "./components/Footer";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Header from "./components/Header";
+import PaymentForm from "./components/PaymentForm";
+
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
             <Route exact path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/payment" element={<PaymentForm />} />
           </Routes>
         </div>
         <Footer />
