@@ -1,4 +1,4 @@
-import React from "
+import React from "react";
 
 import * as styles from "./Main.css";
 
