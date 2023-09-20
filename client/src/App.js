@@ -10,6 +10,8 @@ import OpenAccount from "./components/OpenAccount";
 import AuthenticationService from "./service/AuthenticationService";
 import Dashboard from "./components/Dashboard";
 import { useEffect, useState } from "react";
+import PaymentForm from "./components/PaymentForm";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,6 +39,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/openaccount" element={<OpenAccount profile={profile}/>} />
             <Route path="/dashboard" element={<Dashboard profile={profile} fetchProfile={fetchProfile}/>} />
+            <Route path="/payment" element={<PaymentForm />} />
           </Routes>
         </div>
         <Footer />
