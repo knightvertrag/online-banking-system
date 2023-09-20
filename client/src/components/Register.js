@@ -116,6 +116,7 @@ const Register = () => {
           <h3>Register</h3>
 
           {successMessage && <p className="success-message">{successMessage}</p>}
+
           <div className="mb-3">
             <label>First name</label>
             <input
@@ -128,6 +129,7 @@ const Register = () => {
           
             />
             {errors.firstName && <p className="error-message">{errors.firstName}</p>}
+
           </div>
           <div className="mb-3">
             <label>Last name</label>
@@ -140,6 +142,7 @@ const Register = () => {
               onChange={handleChange}
             />
             {errors.lastName && <p className="error-message">{errors.lastName}</p>}
+
           </div>
           <div className="mb-3">
             <label>Contact number</label>
@@ -152,6 +155,7 @@ const Register = () => {
               onChange={handleChange}
             />
             {errors.phone && <p className="error-message">{errors.phone}</p>}
+
           </div>
           <div className="mb-3">
             <label>Email address</label>
@@ -164,6 +168,7 @@ const Register = () => {
               onChange={handleChange}
             />
             {errors.email && <p className="error-message">{errors.email}</p>}
+           
           </div>
           <div className="mb-3">
             <label>Father's name</label>
@@ -171,11 +176,13 @@ const Register = () => {
               type="text"
               className="form-control"
               placeholder="Enter father's name"
+
               name="fatherName"
               value={customer.fatherName}
               onChange={handleChange}
             />
             {errors.fatherName && <p className="error-message">{errors.fatherName}</p>}
+
           </div>
           <div className="mb-3">
             <label>Aadhar number</label>
@@ -183,6 +190,9 @@ const Register = () => {
               type="text"
               className="form-control"
               placeholder="Enter Aadhar number"
+
+         
+
               name="aadhar"
               value={customer.aadhar}
               onChange={handleChange}
@@ -197,18 +207,21 @@ const Register = () => {
               value={customer.dob}
               onChange={handleChange}/>
               {errors.dob && <p className="error-message">{errors.dob}</p>}
+
           </div>
           <div className="mb-3">
             <label>Password</label>
             <input
               type="password"
               className="form-control"
+
               name="password"
               value={customer.password}
               onChange={handleChange}
               placeholder="Enter password"
             />
             {errors.password && <p className="error-message">{errors.password}</p>}
+
           </div>
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">

@@ -14,12 +14,15 @@
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
+
   height: 100px;
 }
 
 .subnav-hero-section .subnav-hero-headline {
   color: #fefefe;
 }
+
+
 
 .subnav-hero-subnav {
   float: none;
@@ -29,4 +32,3 @@
   bottom: 0;
   width: 100%;
 }
-
