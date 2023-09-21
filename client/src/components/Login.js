@@ -3,7 +3,8 @@ import "./Auth.css";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../service/AuthenticationService";
 
-const Login = () => {
+
+const Login = ({setIsLoggedIn}) => {
 
   const history = useNavigate();
 
@@ -23,17 +24,16 @@ const Login = () => {
       const loginSuccess = await AuthenticationService.login(customer);
       console.log('API response: ', loginSuccess);
       if (loginSuccess) {
+        setIsLoggedIn(true)
+        localStorage.setItem("custId", custId);
         setSuccessMessage('Login successful, redirecting');
         setTimeout(() => {
-          history("/register");
+          history("/dashboard");
         }, 3000);
-
-
       }
       else {
         setErrorMessage("Invalid Customer or Password");
       }
-
     }
     catch (error) {
       console.error('Login error: ', error);
@@ -41,7 +41,7 @@ const Login = () => {
     }
   }
   return (
-    <div className="d-flex justify-content-center flex-column text-left">
+    <div className=" d-flex justify-content-center flex-column text-left center-screen">
       <div className="auth-inner m-5">
         
 
