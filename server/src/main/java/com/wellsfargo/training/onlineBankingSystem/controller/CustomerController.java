@@ -60,7 +60,7 @@ public class CustomerController {
 	
 	@GetMapping("/userDetails/{custId}")
 	public ResponseEntity<Customer> getCustomerDetails(@PathVariable Long custId){
-		Optional<Customer> customer= cservice.fetchCustomerDetails(custId);
+		Optional<Customer> customer= customerService.fetchCustomerDetails(custId);
 		 return ResponseEntity.ok(customer.get());
 	}
 	
