@@ -5,12 +5,26 @@ import { useState } from "react";
 import AuthenticationService from "../service/AuthenticationService";
 
 
-
 const Dashboard = ({profile, fetchProfile}) => {
     const history=useNavigate();
+    const [selected, setSelected] = useState()
+
+    const displayProfile = () => {
+        Object.keys(profile).forEach(key => {
+            return `${key}:${profile[key]}` 
+        })
+    }
+
+    const renderSelected = () => {
+
+        switch(selected) {
+            case "viewAccounts":
+                // return Account
+        }
+    }
     //react hook to manage life cycle of a Componenent
   useEffect(() => {
-    if(!profile.firstName)
+    if(Object.keys(profile).length==0)
         fetchProfile(); //invokes fetchProfile() method when component is rendered
   }, []);
 return(
@@ -43,10 +57,10 @@ return(
                             <i className="fs-4 bi-bootstrap"></i> <span className="ms-1 d-none d-sm-inline">Transaction</span></a>
                         <ul className="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li className="w-100">
-                                <a href="#" className="nav-link px-0"> <span className="d-none d-sm-inline"></span>Withdraw</a>
+                                <a href="#" className="nav-link px-0"> <span className="d-none d-sm-inline"></span>View log</a>
                             </li>
                             <li>
-                                <a href="#" className="nav-link px-0"> <span className="d-none d-sm-inline"></span>Deposit</a>
+                                <a href="#" className="nav-link px-0"> <span className="d-none d-sm-inline"></span>Tr</a>
                             </li>
                         </ul>
                     </li>
@@ -58,13 +72,7 @@ return(
             </div>
         </div>
         <div className="col py-3">
-            <h3>Left Sidebar with Submenus</h3>
-            <p className="lead">
-                An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single 
-                menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively shrink in width on smaller screens.</p>
-            <ul className="list-unstyled">
-                <li><h5>Responsive</h5> shrinks in width, hides text labels and collapses to icons only on mobile</li>
-            </ul>
+            
         </div>
     </div>
 </div>

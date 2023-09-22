@@ -36,9 +36,9 @@ function PaymentForm() {
 
 function Tab({value}) {
   
-    if (value.toString() == 'RTGS') {
+    if (value.toString() === 'RTGS') {
       return <RTGSPayment />;
-    }else if (value.toString()=='IMPS') {
+    }else if (value.toString()==='IMPS') {
       return <IMPSPayment />;
     }else {
       return <NEFTPayment />;

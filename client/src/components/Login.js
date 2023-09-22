@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Auth.css";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../service/AuthenticationService";
+import "./Login.css"
 
 
 const Login = ({setIsLoggedIn}) => {
@@ -29,7 +30,7 @@ const Login = ({setIsLoggedIn}) => {
         setSuccessMessage('Login successful, redirecting');
         setTimeout(() => {
           history("/dashboard");
-        }, 3000);
+        }, 1000);
       }
       else {
         setErrorMessage("Invalid Customer or Password");
