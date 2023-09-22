@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
 import { useState } from "react";
 import AuthenticationService from "../service/AuthenticationService";
+import './Register.css'
 
 const Register = () => {
 
@@ -110,9 +111,9 @@ const Register = () => {
   };
 
   return (
-    <div className="d-flex justify-content-center flex-column text-left">
+    <div className="d-flex justify-content-center flex-column text-left center-screen">
       <div className="auth-inner m-5">
-        <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
           <h3>Register</h3>
 
           {successMessage && <p className="success-message">{successMessage}</p>}
@@ -126,9 +127,8 @@ const Register = () => {
               name="firstName"
               value={customer.firstName}
               onChange={handleChange}
-          
-            />
-            {errors.firstName && <p className="error-message">{errors.firstName}</p>}
+         />
+            
 
           </div>
           <div className="mb-3">
@@ -232,6 +232,7 @@ const Register = () => {
             Already registered <Link to="/login">sign in?</Link>
           </p>
         </form>
+       
       </div>
     </div>
   );

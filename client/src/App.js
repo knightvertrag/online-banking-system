@@ -18,10 +18,9 @@ function App() {
   const [profile, setProfile] = useState({});
 
   const fetchProfile = () => {
-    // AuthenticationService.getCustomer().then((response) => {
-    //   setProfile(response.data);
-    // });
-    setProfile({abcf:"abcf"})
+    AuthenticationService.getCustomer(localStorage.getItem("custId")).then((response) => {
+      setProfile(response);
+    });
   };
   
   useEffect(() => {

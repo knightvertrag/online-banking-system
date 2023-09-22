@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Header = ({isLoggedIn, setIsLoggedIn}) => {
   const history = useNavigate();
@@ -24,33 +25,37 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
               <>
                 <li className="nav-item p-2">
                   <Link className="nav-link" to="/openaccount">
-                    Open account
+                  <Button variant='light'>Open Account</Button>
                   </Link>
                 </li>
                 <li className="nav-item p-2">
                   <Link className="nav-link" to="/dashboard">
-                    Dashboard
+                  <Button variant='light'>Dashboard</Button>
+                    
                   </Link>
                 </li>
                 <li className="nav-item p-2">
-                  <button
+                <Button variant='light' className="nav-link"
+                    onClick={logOut}>Log out</Button>
+                  {/* <button
                     className="nav-link"
                     onClick={logOut}
                   >
                     Log out
-                  </button>
+                  </button> */}
                 </li>
               </>
             ) : (
               <>
                 <li className="nav-item p-2">
                   <Link className="nav-link" to="/login">
-                    Login
+                    <Button variant='light'>Login</Button>
+                    {/* Login */}
                   </Link>
                 </li>
                 <li className="nav-item p-2">
                   <Link className="nav-link" to="/register">
-                    Register
+                  <Button variant='light'>Register</Button>
                   </Link>
                 </li>
               </>
