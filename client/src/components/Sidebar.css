@@ -1,0 +1,5 @@
+.sidebar-main {
+    flex: auto;
+    flex-direction: column;
+    background-color: blueviolet;
+}
