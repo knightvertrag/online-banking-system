@@ -4,7 +4,7 @@ class AccountsService {
   static async createAccount(custId, account) {
     try {
       const response = await axios.post(
-        `http://localhost:8085/obs/accounts/accounts/createAccount/${custId}`,
+        `http://localhost:8085/obs/accounts/createAccount/${custId}`,
         account
       );
       return response.data;
