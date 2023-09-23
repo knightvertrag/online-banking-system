@@ -1,16 +1,20 @@
 import React from "react";
 
-function Footer(){
-    return(
-        <div style= {{textAlign:"center",
-        color:"white",
-        backgroundColor:"black",
-        margin:'0px',
-        padding: '1px'}}>
-            <p>All &copy; Rights Reserved | Citizens Bank</p>
-
-        </div>
-    );
+function Footer() {
+  return (
+    <div
+      className="fixed-bottom"
+      style={{
+        textAlign: "center",
+        color: "white",
+        backgroundColor: "black",
+        marginTop: "auto",
+        padding: "1px",
+      }}
+    >
+      <p>All &copy; Rights Reserved | Citizens Bank</p>
+    </div>
+  );
 }
 
 export default Footer;
