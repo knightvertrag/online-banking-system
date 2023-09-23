@@ -11,6 +11,8 @@ import AuthenticationService from "./service/AuthenticationService";
 import Dashboard from "./components/Dashboard";
 import { useEffect, useState } from "react";
 import PaymentForm from "./components/PaymentForm";
+import ViewProfile from "./components/ViewProfile";
+import EditProfile from "./components/EditProfile";
 
 
 function App() {
@@ -39,6 +41,8 @@ function App() {
             <Route path="/openaccount" element={<OpenAccount profile={profile}/>} />
             <Route path="/dashboard" element={<Dashboard fetchProfile={fetchProfile} profile={profile}/>} />
             <Route path="/payment" element={<PaymentForm />} />
+            <Route path="viewProfile/:id" element={<ViewProfile/>} />
+            <Route path="editProfile/:id" element={<EditProfile/>} />
           </Routes>
         </div>
         <Footer />
