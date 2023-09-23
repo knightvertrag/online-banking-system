@@ -3,11 +3,11 @@ import { useParams,useNavigate } from 'react-router-dom';
 import CustomerService from '../service/CustomerService';
 
 
-const ViewProfile = () => {
+const ViewProfile = ({profile}) => {
 
     const history = useNavigate();
 
-    const { id } = useParams();
+    const id = profile.custId;
     const [customer, setCustomer] = useState({});
 
      // componentDidUpdate usage

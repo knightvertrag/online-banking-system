@@ -3,11 +3,11 @@ import { useParams,useNavigate } from 'react-router-dom';
 import CustomerService from '../service/CustomerService';
 
 
-function EditProfile() {
+const EditProfile = ({profile}) => {
 
     const navigate = useNavigate();
 
-    const {id} = useParams(); //fetches id from URL
+    const id = profile.custId;
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');

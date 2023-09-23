@@ -32,7 +32,6 @@ const Sidebar = ({ setSelectedPage }) => {
             {activeItem === "Account" ? (
                 <>
                     <SidebarItem name="View Accounts" setSelectedPage={setSelectedPage} />
-                    <SidebarItem name="Edit Profile" setSelectedPage={setSelectedPage} />
                 </>
                 ) : <></>}
             <div className="sidebar-item"  value="Transaction" onClick={(e) => changeSidebarItem(e)}>
