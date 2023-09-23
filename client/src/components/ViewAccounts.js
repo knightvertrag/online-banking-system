@@ -14,11 +14,11 @@ const ViewAccounts = ({profile}) =>{
         
     }, []);
     const [accounts, setAccounts] = useState([]);
-    console.log(profile.custId)
+    // console.log(profile.custId)
     const fetchAccounts = () => {
         AccountsService.getAccounts(profile.custId).then((response) => {
             setAccounts(response.data);
-            console.log(response.data);
+            // console.log(response.data);
         })
     }
 

@@ -9,7 +9,7 @@ function PaymentForm() {
   
   const [value,setValue]=useState('');
   const handleSelect=(e)=>{
-    console.log(e);
+    // console.log(e);
     setValue(e)
   }
   

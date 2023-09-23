@@ -18,7 +18,7 @@ const Content = ({selectedPage, profile}) => {
     return (
         <div className="content-main">
             {/* {custId} */}
-            {console.log('content' + profile)}
+            {/* {console.log('content' + profile)} */}
             {page}
         </div>
     );
