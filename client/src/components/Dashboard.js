@@ -8,11 +8,11 @@ import Header from "./Header";
 import Content from "./Dashboard/Content";
 import "./Dashboard.css";
 
-const Dashboard = ({profile, fetchProfile, isLoggedIn}) => {
+const Dashboard = ({fetchProfile, isLoggedIn, profile}) => {
     const history=useNavigate();
-    const [selected, setSelected] = useState()
+    const [selected, setSelected] = useState();
     const [selectedPage, setSelectedPage] = useState("Profile");
-
+    //const [custId, setcustId] = useState("");
     const displayProfile = () => {
         Object.keys(profile).forEach(key => {
             return `${key}:${profile[key]}` 
@@ -85,9 +85,10 @@ const Dashboard = ({profile, fetchProfile, isLoggedIn}) => {
   return (
     <div className="home">
         {/* <Header isLoggedIn={isLoggedIn} setIsLoggedIn={null}/> */}
+        {/* {console.log(profile.custId)} */}
         <div className="dashboard-main">
             <Sidebar setSelectedPage={setSelectedPage}/>
-            <Content selectedPage={selectedPage}/>
+            <Content selectedPage={selectedPage} profile={profile} />
         </div>
     </div>
   );

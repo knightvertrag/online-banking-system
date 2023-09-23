@@ -14,6 +14,18 @@ class AccountsService {
       console.error("Create Account Error: ", error);
     }
   }
+
+  static async getAccounts(custId) {
+    try {
+        const response = await axios.get('http://localhost:8085/obs/accounts/getAccounts/' + custId);
+        
+        return response
+    
+      }
+    catch (error) {
+        console.error('Account login error: ', error);
+    }
+}
 }
 
 export default AccountsService;

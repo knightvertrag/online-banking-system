@@ -37,7 +37,7 @@ function App() {
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/openaccount" element={<OpenAccount profile={profile}/>} />
-            <Route path="/dashboard" element={<Dashboard profile={profile} fetchProfile={fetchProfile}/>} />
+            <Route path="/dashboard" element={<Dashboard fetchProfile={fetchProfile} profile={profile}/>} />
             <Route path="/payment" element={<PaymentForm />} />
           </Routes>
         </div>

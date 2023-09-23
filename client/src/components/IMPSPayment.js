@@ -1,6 +1,7 @@
 import React from "react"
 
 const IMPSPayment = () => {
+    
     return(<div>
         <div className="d-flex justify-content-center flex-column text-left">
       <div className="auth-inner m-5">
