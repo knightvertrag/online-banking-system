@@ -10,17 +10,23 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchCustomerExistsException;
 import com.wellsfargo.training.onlineBankingSystem.model.Customer;
+import com.wellsfargo.training.onlineBankingSystem.repository.CustomerRepository;
 import com.wellsfargo.training.onlineBankingSystem.service.CustomerService;
 
 @CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping(value="/api")
 public class CustomerController {
+	
+	@Autowired
+	private CustomerRepository custRepository;
 	
 	@Autowired
 	private CustomerService customerService;
@@ -62,6 +68,24 @@ public class CustomerController {
 	public ResponseEntity<Customer> getCustomerDetails(@PathVariable Long custId){
 		Optional<Customer> customer= customerService.fetchCustomerDetails(custId);
 		 return ResponseEntity.ok(customer.get());
+	}
+	
+	@PutMapping("/updateDetails/{id}")
+	public ResponseEntity<Customer> updateCustomerById(@PathVariable(value = "id") Long custId, @Validated @RequestBody Customer c) throws NoSuchCustomerExistsException{
+		Customer customer = customerService.loginCustomer(custId).orElseThrow(()-> new
+				NoSuchCustomerExistsException("Customer Not Found for this ID: "+custId));
+		//update the product with new values
+		customer.setAadhar(c.getAadhar());
+		customer.setDob(c.getDob());
+		customer.setEmail(c.getEmail());
+		customer.setFatherName(c.getFatherName());
+		customer.setFirstName(c.getFirstName());
+		customer.setLastName(c.getLastName());
+		customer.setPhone(c.getPhone());
+	
+		
+		final Customer updatedCustomer = custRepository.save(customer);
+		return ResponseEntity.ok().body(updatedCustomer);
 	}
 	
 	
