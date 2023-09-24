@@ -3,7 +3,7 @@ import "./Auth.css";
 import { useNavigate } from "react-router-dom";
 import AuthenticationService from "../service/AuthenticationService";
 import "./Login.css"
-
+import { Link } from "react-router-dom";
 
 const Login = ({setIsLoggedIn}) => {
 
@@ -79,6 +79,10 @@ const Login = ({setIsLoggedIn}) => {
             {successMessage && <p className='successMessage'>{successMessage}</p>}
           </div>
         
+        <div>
+          <br/>
+          <Link to={{pathname: "/admin"}}>Sign in as Admin</Link>
+        </div>
 
       </div>
     </div>
