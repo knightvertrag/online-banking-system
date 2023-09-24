@@ -4,6 +4,7 @@ import PaymentForm from "../PaymentForm";
 import ViewAccounts from "../ViewAccounts";
 import EditProfile from "../EditProfile";
 import ViewProfile from "../ViewProfile";
+import ViewTransactions from "../ViewTransactions";
 
 const Content = ({selectedPage, profile}) => {
     let page;
@@ -16,10 +17,13 @@ const Content = ({selectedPage, profile}) => {
             page = <ViewProfile profile={profile}/>
             break;
         case "Make Transaction":
-            page = <PaymentForm />
+            page = <PaymentForm setSelectedPage={setSelectedPage}/>
             break;
         case "View Accounts":
             page = <ViewAccounts profile={profile}/>
+            break;
+        case "View Transactions":
+            page = <ViewTransactions />
             break;
         default:
             break;

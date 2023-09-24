@@ -88,7 +88,7 @@ const Dashboard = ({fetchProfile, isLoggedIn, profile}) => {
         {/* {console.log(profile.custId)} */}
         <div className="dashboard-main">
             <Sidebar setSelectedPage={setSelectedPage}/>
-            <Content selectedPage={selectedPage} profile={profile} />
+            <Content selectedPage={selectedPage} profile={profile} setSelectedPage={setSelectedPage}/>
         </div>
     </div>
   );
