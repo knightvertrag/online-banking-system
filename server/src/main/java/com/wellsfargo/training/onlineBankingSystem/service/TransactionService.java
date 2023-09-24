@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.wellsfargo.training.onlineBankingSystem.exception.DeactivatedAccountException;
 import com.wellsfargo.training.onlineBankingSystem.exception.IncorrectTransactionPasswordException;
 import com.wellsfargo.training.onlineBankingSystem.exception.InsufficientBalanceException;
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
@@ -27,12 +28,21 @@ public class TransactionService {
 	@Autowired
 	private AccountService accService;
 	
-	public Transaction createTransaction(Long amount, Long senderAccountNo , Long receiverAccountNo, String transPassword) throws NoSuchAccountExistsException, InsufficientBalanceException, IncorrectTransactionPasswordException {
+	public Transaction createTransaction(Long amount, Long senderAccountNo , Long receiverAccountNo, String transPassword, String remarks) throws NoSuchAccountExistsException, InsufficientBalanceException, IncorrectTransactionPasswordException {
 		Account senderAccount = accService.getSingleAccount(senderAccountNo).orElseThrow(()->
 		new NoSuchAccountExistsException("Sender Account Not found"));
 		
 		Account receiverAccount = accService.getSingleAccount(receiverAccountNo).orElseThrow(()->
 		new NoSuchAccountExistsException("Receiver Account Not found"));
+		
+		if(senderAccount.getIsActive()==0) {
+			throw new DeactivatedAccountException("Transaction Declined ! Sender Account is deactivated");
+		}
+		
+		if(receiverAccount.getIsActive()==0) {
+			throw new DeactivatedAccountException("Transaction Declined ! Receiver Account is deactivated");
+		}
+		
 		
 		if(!transPassword.equals(senderAccount.getTransPassword())) {
 			throw new IncorrectTransactionPasswordException("Incorrect Transaction Password");
@@ -48,6 +58,9 @@ public class TransactionService {
 		transaction.setSenderAccount(senderAccount);
 		transaction.setTransactionTime(LocalDateTime.now());
 		
+		if(remarks.length()>0) {
+			transaction.setRemarks(remarks);
+		}
 		
 		senderAccount.setBalance(senderAccount.getBalance()-amount);
 		receiverAccount.setBalance(receiverAccount.getBalance()+amount);

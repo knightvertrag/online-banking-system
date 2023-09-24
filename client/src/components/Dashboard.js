@@ -11,7 +11,7 @@ import "./Dashboard.css";
 const Dashboard = ({fetchProfile, isLoggedIn, profile}) => {
     const history=useNavigate();
     const [selected, setSelected] = useState();
-    const [selectedPage, setSelectedPage] = useState("Profile");
+    const [selectedPage, setSelectedPage] = useState("View Accounts");
     //const [custId, setcustId] = useState("");
     const displayProfile = () => {
         Object.keys(profile).forEach(key => {
@@ -88,7 +88,7 @@ const Dashboard = ({fetchProfile, isLoggedIn, profile}) => {
         {/* {console.log(profile.custId)} */}
         <div className="dashboard-main">
             <Sidebar setSelectedPage={setSelectedPage}/>
-            <Content selectedPage={selectedPage} profile={profile} />
+            <Content selectedPage={selectedPage} profile={profile} setSelectedPage={setSelectedPage}/>
         </div>
     </div>
   );

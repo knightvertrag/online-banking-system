@@ -1,23 +1,36 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import RTGSPayment from './RTGSPayment';
-import Dropdown from 'react-bootstrap/Dropdown';
-import IMPSPayment from './IMPSPayment';
-import NEFTPayment from './NEFTPayment';
+import React, { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import RTGSPayment from "./RTGSPayment";
+import Dropdown from "react-bootstrap/Dropdown";
+import IMPSPayment from "./IMPSPayment";
+import NEFTPayment from "./NEFTPayment";
+import AccountsService from "../service/AccountsService";
+import PaymentItem from "./Payment/PaymentItem";
 
-function PaymentForm() {
-  
-  const [value,setValue]=useState('');
-  const handleSelect=(e)=>{
-    console.log(e);
-    setValue(e)
-  }
-  
+function PaymentForm({ setSelectedPage }) {
+  const [accounts, setAccounts] = useState([]);
+  const [value, setValue] = useState("");
+
+  useEffect(() => {
+    fetchAccounts();
+  }, []);
+
+  // console.log(profile.custId);
+  const fetchAccounts = () => {
+    AccountsService.getAccounts(localStorage.getItem("custId")).then(
+      (response) => {
+        setAccounts(response.data);
+      }
+    );
+  };
+
+  const handleSelect = (e) => {
+    setValue(e);
+  };
 
   return (
     <div className="app-container">
-        
-      <Dropdown  onSelect={handleSelect}>
+      <Dropdown onSelect={handleSelect}>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           Select RIGS/IMPS/NEFT
         </Dropdown.Toggle>
@@ -29,20 +42,25 @@ function PaymentForm() {
         </Dropdown.Menu>
       </Dropdown>
       {/* <h4>You selected {value}</h4> */}
-      <Tab value={value} />
+      {value.length > 0 && (
+        <Tab
+          value={value}
+          accounts={accounts}
+          setSelectedPage={setSelectedPage}
+        />
+      )}
     </div>
   );
 }
 
-function Tab({value}) {
-  
-    if (value.toString() === 'RTGS') {
-      return <RTGSPayment />;
-    }else if (value.toString()==='IMPS') {
-      return <IMPSPayment />;
-    }else {
-      return <NEFTPayment />;
-    }
-  }
+function Tab({ value, accounts, setSelectedPage }) {
+  return (
+    <PaymentItem
+      value={value}
+      accounts={accounts}
+      setSelectedPage={setSelectedPage}
+    />
+  );
+}
 
 export default PaymentForm;

@@ -129,7 +129,7 @@ const Register = () => {
               onChange={handleChange}
          />
             
-
+            {errors.firstName && <p className="error-message">{errors.firstName}</p>}
           </div>
           <div className="mb-3">
             <label>Last name</label>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wellsfargo.training.onlineBankingSystem.exception.DeactivatedAccountException;
 import com.wellsfargo.training.onlineBankingSystem.exception.IncorrectTransactionPasswordException;
 import com.wellsfargo.training.onlineBankingSystem.exception.InsufficientBalanceException;
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
@@ -21,6 +23,7 @@ import com.wellsfargo.training.onlineBankingSystem.model.Transaction;
 import com.wellsfargo.training.onlineBankingSystem.model.TransactionRequest;
 import com.wellsfargo.training.onlineBankingSystem.service.TransactionService;
 
+@CrossOrigin(origins="http://localhost:3000")
 @RestController
 @RequestMapping("/transactions")
 public class TransactionController {
@@ -29,12 +32,13 @@ public class TransactionController {
 	
 	
 	@PostMapping("/createTransaction")
-	public ResponseEntity<Transaction> createTransaction(@Validated @RequestBody TransactionRequest transactionRequest) throws NoSuchAccountExistsException, InsufficientBalanceException, IncorrectTransactionPasswordException{
+	public ResponseEntity<Transaction> createTransaction(@Validated @RequestBody TransactionRequest transactionRequest) throws NoSuchAccountExistsException, InsufficientBalanceException, IncorrectTransactionPasswordException, DeactivatedAccountException{
 		Long amount=transactionRequest.getAmount();
 		Long senderAcc=transactionRequest.getSenderAccountNo();
 		Long receiverAcc=transactionRequest.getReceiverAccountNo();
 		String transPassword=transactionRequest.getTransPassword();
-		Transaction newTransaction = transService.createTransaction(amount, senderAcc, receiverAcc,transPassword);
+		String remarks=transactionRequest.getRemarks();
+		Transaction newTransaction = transService.createTransaction(amount, senderAcc, receiverAcc,transPassword,remarks);
 		
 		return ResponseEntity.ok(newTransaction);
 		

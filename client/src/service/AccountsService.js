@@ -2,7 +2,7 @@ import axios from "axios";
 
 class AccountsService {
   static async createAccount(custId, account) {
-    console.log(account);
+    // console.log(account);
     try {
       const response = await axios.post(
         'http://localhost:8085/obs/accounts/createAccount/'+custId,
@@ -23,7 +23,7 @@ class AccountsService {
     
       }
     catch (error) {
-        console.error('Account login error: ', error);
+        console.error('Fetch accounts error: ', error);
     }
 }
 }

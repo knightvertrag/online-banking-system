@@ -1,5 +1,12 @@
 .sidebar-main {
     flex: auto;
     flex-direction: column;
-    background-color: blueviolet;
+    background-color: #b30000;
+    color: white;
+}
+
+.sidebar-item {
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
 }

@@ -1,4 +1,5 @@
 .content-main {
+    align-items: center;
     flex: auto;
     background-color: brown;
     width: 70%;
