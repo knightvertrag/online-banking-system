@@ -6,7 +6,7 @@ import EditProfile from "../EditProfile";
 import ViewProfile from "../ViewProfile";
 import ViewTransactions from "../ViewTransactions";
 
-const Content = ({selectedPage, profile}) => {
+const Content = ({selectedPage, profile, setSelectedPage}) => {
     let page;
     
     switch (selectedPage) {

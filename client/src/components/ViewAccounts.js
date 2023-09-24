@@ -3,7 +3,7 @@ import AccountsService from "../service/AccountsService";
 import { useNavigate } from "react-router";
 import AuthenticationService from "../service/AuthenticationService";
 
-const ViewAccounts = ({ profile }) => {
+const ViewAccounts = () => {
   const history = useNavigate();
   //const [custId, setcustId] = useState(profile.custId);
   //react hook to manage lifecycle of a component
@@ -13,7 +13,6 @@ const ViewAccounts = ({ profile }) => {
   const fetchAccounts = () => {
     AccountsService.getAccounts(localStorage.getItem("custId")).then((response) => {
       setAccounts(response.data);
-      console.log(response.data);
     });
   };
   

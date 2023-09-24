@@ -7,7 +7,6 @@ import AccountsService from "../service/AccountsService";
 
 
 const OpenAccount = ({ profile }) => {
-console.log(profile)
   const history = useNavigate();
   const [account, setAccount] = useState({
     transPassword: '',
