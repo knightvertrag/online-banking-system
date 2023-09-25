@@ -1,9 +1,8 @@
 import React from "react";
 import "./SidebarItem.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
-const SidebarItem = ({ name, icon, setSelectedPage }) => {
+
+const SidebarItem = ({ name,  setSelectedPage }) => {
 
     const changeContent = () => {
         setSelectedPage(name);

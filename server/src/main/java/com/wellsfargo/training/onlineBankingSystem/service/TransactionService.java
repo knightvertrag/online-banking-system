@@ -28,7 +28,7 @@ public class TransactionService {
 	@Autowired
 	private AccountService accService;
 	
-	public Transaction createTransaction(Long amount, Long senderAccountNo , Long receiverAccountNo, String transPassword, String remarks) throws NoSuchAccountExistsException, InsufficientBalanceException, IncorrectTransactionPasswordException {
+	public Transaction createTransaction(Long amount, Long senderAccountNo , Long receiverAccountNo, String transPassword, String remarks) throws NoSuchAccountExistsException, InsufficientBalanceException, IncorrectTransactionPasswordException, DeactivatedAccountException {
 		Account senderAccount = accService.getSingleAccount(senderAccountNo).orElseThrow(()->
 		new NoSuchAccountExistsException("Sender Account Not found"));
 		

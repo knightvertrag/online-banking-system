@@ -47,12 +47,9 @@ public class AccountService {
 		
 	}
 	
-	public ResponseEntity<List<Account>> getAllAccounts(Long custId){
+	public List<Account> getAllAccounts(Long custId){
 		List<Account> accounts = accRepository.findByCustId(custId);
-		if(accounts.isEmpty())
-			return ResponseEntity.notFound().build();
-		
-		return ResponseEntity.ok(accounts);
+		return accounts;
 		
 	}
 	
