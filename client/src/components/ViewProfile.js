@@ -7,15 +7,17 @@ const ViewProfile = ({profile}) => {
 
     const history = useNavigate();
 
-    const id = profile.custId;
+    // const id = profile.custId;
     const [customer, setCustomer] = useState({});
 
      // componentDidUpdate usage
     useEffect(() => {
-        CustomerService.getCustomerById(id).then((res) => {
+
+        console.log(profile.custId);
+        CustomerService.getCustomerById(profile.custId).then((res) => {
             setCustomer(res.data);
         });
-    }, [id]);  // //values -id triggers re render whenever they are updated in your program,
+    }, [profile.custId]);  // //values -id triggers re render whenever they are updated in your program,
                 //you can add multiple values by separating them by commas
 
     const backDashboard = () => {

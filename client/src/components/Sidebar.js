@@ -15,7 +15,7 @@ const Sidebar = ({ setSelectedPage }) => {
     return (
         <div className="sidebar-main">
             <div className="sidebar-item" value="Profile" onClick={(e) => changeSidebarItem(e)}>
-                <FontAwesomeIcon icon={faUser} />
+                {/* <FontAwesomeIcon icon={faUser} /> */}
                 <SidebarItem name="Profile" icon="fa-regular fa-user" setSelectedPage={setSelectedPage} />
                 
             </div>

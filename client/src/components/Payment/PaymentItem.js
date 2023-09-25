@@ -1,17 +1,27 @@
-import React, { useRef, useState } from "react";
-import TransactionsService from "../service/TransactionService";
+import React, { useEffect, useRef, useState } from "react";
+import TransactionsService from "../../service/TransactionService";
 
-const RTGSPayment = ({ accounts, setSelectedPage }) => {
+const transactionState = {
+  senderAccountNo: "Please select account",
+  receiverAccountNo: "",
+  amount: "",
+  remarks: "",
+  transPassword: "",
+};
+
+const PaymentItem = ({ value, accounts, setSelectedPage }) => {
   //defining state
-  const [transaction, setTransaction] = useState({
-    senderAccountNo: "Please select account",
-    receiverAccountNo: "",
-    amount: "",
-    remarks: "",
-    maturityInstruction: "",
-    transPassword: "",
-  });
-
+  const [transaction, setTransaction] = useState(transactionState);
+  useEffect(() => {
+    if (value == "NEFT") {
+      setTransaction(() => transactionState);
+    } else {
+      setTransaction((prevTransaction) => ({
+        ...prevTransaction,
+        maturityInstruction: "",
+      }));
+    }
+  }, [value]);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -26,8 +36,8 @@ const RTGSPayment = ({ accounts, setSelectedPage }) => {
 
   const validateForm = () => {
     let validationErrors = {};
-console.log(transaction.senderAccountNo)
-    if (transaction.senderAccountNo=="Please select account") {
+
+    if (transaction.senderAccountNo == "Please select account") {
       validationErrors.senderAccountNo = "Sender account is required.";
     }
 
@@ -59,7 +69,7 @@ console.log(transaction.senderAccountNo)
         setSuccessMessage("Transaction successful!");
         alert("Transaction Successfull");
         setTimeout(() => {
-          setSelectedPage('View Transactions');
+          setSelectedPage("View Transactions");
         }, 3000);
       } catch (error) {
         console.error("Transaction error", error);
@@ -70,10 +80,13 @@ console.log(transaction.senderAccountNo)
     }
   };
   return (
-    <div className="d-flex justify-content-center flex-column text-left">
+    <div
+      key={value}
+      className="d-flex justify-content-center flex-column text-left"
+    >
       <div className="auth-inner m-5">
         <form onSubmit={handleSubmit}>
-          <h3>Initiate RTGS Payment</h3>
+          <h3>Initiate {value} Payment</h3>
           {successMessage && (
             <p className="success-message">{successMessage}</p>
           )}
@@ -86,10 +99,10 @@ console.log(transaction.senderAccountNo)
               // value={transaction.senderAccountNo}
               onChange={handleChange}
             >
-            <option>Please select account</option>
-            {accounts.map((account) => (
-              <option key={account.accNo}>{account.accNo}</option>
-            ))}
+              <option>Please select account</option>
+              {accounts.map((account) => (
+                <option key={account.accNo}>{account.accNo}</option>
+              ))}
             </select>
             {errors.senderAccountNo && (
               <p className="error-message">{errors.senderAccountNo}</p>
@@ -145,20 +158,22 @@ console.log(transaction.senderAccountNo)
             //   onChange={handleChange}
               />
           </div> */}
-          <div className="mb-3">
-            <label>Maturity Instructions</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter maturity instructions"
-              name="maturityInstruction"
-              value={transaction.maturityInstruction}
-              onChange={handleChange}
-            />
-            {errors.maturityInstruction && (
-              <p className="error-message">{errors.maturityInstruction}</p>
-            )}
-          </div>
+          {transaction.hasOwnProperty("maturityInstruction") && (
+            <div className="mb-3">
+              <label>Maturity Instructions</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter maturity instructions"
+                name="maturityInstruction"
+                value={transaction.maturityInstruction}
+                onChange={handleChange}
+              />
+              {errors.maturityInstruction && (
+                <p className="error-message">{errors.maturityInstruction}</p>
+              )}
+            </div>
+          )}
           <div className="mb-3">
             <label>Remarks</label>
             <input
@@ -184,4 +199,4 @@ console.log(transaction.senderAccountNo)
   );
 };
 
-export default RTGSPayment;
+export default PaymentItem;

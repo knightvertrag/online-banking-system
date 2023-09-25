@@ -24,12 +24,13 @@ function App() {
 
   const fetchProfile = () => {
     AuthenticationService.getCustomer(localStorage.getItem("custId")).then((response) => {
+      console.log(response);
       setProfile(response);
     });
   };
   
   useEffect(() => {
-    if(isLoggedIn && Object.keys(profile).length==0)
+    if(isLoggedIn)
         fetchProfile(); //invokes fetchProfile() method when component is rendered
   }, [isLoggedIn]);
   return (
@@ -44,9 +45,9 @@ function App() {
             <Route path="/openaccount" element={<OpenAccount profile={profile}/>} />
             <Route path="/dashboard" element={<Dashboard fetchProfile={fetchProfile} profile={profile}/>} />
             <Route path="/payment" element={<PaymentForm />} />
+            <Route path="viewProfile/:id" element={<ViewProfile profile={profile}/>} />
+            <Route path="editProfile/:id" element={<EditProfile profile={profile}/>} />
             <Route path="/admin" element= {<Admin setIsLoggedIn={setIsLoggedIn}/>}/>
-            <Route path="viewProfile/:id" element={<ViewProfile/>} />
-            <Route path="editProfile/:id" element={<EditProfile/>} />
             <Route path="/adminDashboard" element={<AdminDashboard/>}/>
           </Routes>
         </div>

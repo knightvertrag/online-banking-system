@@ -23,7 +23,7 @@ class AccountsService {
     
       }
     catch (error) {
-        console.error('Account login error: ', error);
+        console.error('Fetch accounts error: ', error);
     }
 }
 }
