@@ -33,20 +33,24 @@ const fetchAllCustomers = () => {
             <th>Date of Birth</th>
             <th>Email</th>
             <th>Father's Name</th>
-            <th>Password</th>
             <th>Phone No.</th>
         </tr>
     </thead>
     <tbody>
-            {/* {customers?.map(
-                    response =>  
-                    <tr key={response.custId}>
-                        <td> {response.firstName} </td>
-                        <td>{response.lastName}</td>
-                       
+            {customers.map(
+                    customer =>  
+                    <tr key={customer.custId}>
+                        <td>{customer.custId}</td>
+                        <td> {customer.firstName} </td>
+                        <td>{customer.lastName}</td>
+                        <td>{customer.aadhar}</td>
+                        <td>{customer.dob}</td>
+                        <td>{customer.email}</td>
+                        <td>{customer.fatherName}</td>
+                        <td>{customer.phone}</td>
                     </tr>
                 )
-            } */}
+            }
     </tbody>
     </table>
     </div>
