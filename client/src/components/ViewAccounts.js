@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AccountsService from "../service/AccountsService";
 import { useNavigate } from "react-router";
-import AuthenticationService from "../service/AuthenticationService";
+
 
 const ViewAccounts = () => {
   const history = useNavigate();
