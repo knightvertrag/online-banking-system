@@ -9,6 +9,7 @@ public class TransactionRequest {
 	private Long senderAccountNo;
 	private Long receiverAccountNo;
 	private String transPassword;
+	private String remarks;
 	public TransactionRequest() {
 		// TODO Auto-generated constructor stub
 	}
@@ -45,6 +46,12 @@ public class TransactionRequest {
         String encodedString = encoder.encodeToString(   // encrypt password in database field
         normalString.getBytes(StandardCharsets.UTF_8) );
         this.transPassword = encodedString;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
 	
 	

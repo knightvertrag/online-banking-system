@@ -37,7 +37,8 @@ public class TransactionController {
 		Long senderAcc=transactionRequest.getSenderAccountNo();
 		Long receiverAcc=transactionRequest.getReceiverAccountNo();
 		String transPassword=transactionRequest.getTransPassword();
-		Transaction newTransaction = transService.createTransaction(amount, senderAcc, receiverAcc,transPassword);
+		String remarks=transactionRequest.getRemarks();
+		Transaction newTransaction = transService.createTransaction(amount, senderAcc, receiverAcc,transPassword,remarks);
 		
 		return ResponseEntity.ok(newTransaction);
 		
