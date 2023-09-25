@@ -1,20 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SidebarItem.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee } from "@fortawesome/free-solid-svg-icons";
 
-const SidebarItem = ({ name, icon, setSelectedPage }) => {
-
-    const changeContent = () => {
-        setSelectedPage(name);
-    }
+const SidebarItem = ({name}) => {
+    const [isClicked, setIsClicked] = useState(false);
 
     return (
-
-        <div className="sidebar-item-main" onClick={changeContent}>
+        <div className={`sidebaritem-main` + (isClicked ? `sidebaritem-active` : ``)} onClick={() => {setIsClicked(!isClicked)}}>
             {name}
         </div>
-
     );
 }
 

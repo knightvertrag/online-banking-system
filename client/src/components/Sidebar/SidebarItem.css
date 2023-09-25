@@ -1,4 +1,9 @@
-.sidebar-item-main {
-    padding: 10px 10px;
-    cursor: pointer;
+.sidebaritem-main {
+    padding-left: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebaritem-active {
+    background-color: aqua;
 }
