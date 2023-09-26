@@ -13,8 +13,10 @@ import { useEffect, useState } from "react";
 import PaymentForm from "./components/PaymentForm";
 import ViewProfile from "./components/ViewProfile";
 import EditProfile from "./components/EditProfile";
-import AdminDashboard from "./components/AdminDashboard"
+import AdminDashboard from "./components/AdminView";
 import Admin from "./components/Admin";
+import AdminDash from "./components/AdminDash";
+import AdminDelete from "./components/AdminDelete";
 
 
 
@@ -48,7 +50,8 @@ function App() {
             <Route path="viewProfile/:id" element={<ViewProfile profile={profile}/>} />
             <Route path="editProfile/:id" element={<EditProfile profile={profile}/>} />
             <Route path="/admin" element= {<Admin setIsLoggedIn={setIsLoggedIn}/>}/>
-            <Route path="/adminDashboard" element={<AdminDashboard/>}/>
+            <Route path="/adminDashboard" element={<AdminDash setIsLoggedIn={setIsLoggedIn}/>}/>
+            <Route path="/deactiveAccount" element={<AdminDelete/>}/>
           </Routes>
         </div>
         <Footer />

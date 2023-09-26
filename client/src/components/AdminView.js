@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import AdminService from "../service/AdminService";
 
-const AdminDashboard = () => {
+const AdminView = () => {
   
   const history=useNavigate();
   useEffect(() => {
@@ -20,7 +20,7 @@ const fetchAllCustomers = () => {
 }
 
   return (
-    <div>All Customers Details
+    <div> <br/>
     <div className="row justify-content-center" >
 
     <table className="table table-success w-auto">
@@ -34,6 +34,7 @@ const fetchAllCustomers = () => {
             <th>Email</th>
             <th>Father's Name</th>
             <th>Phone No.</th>
+           
         </tr>
     </thead>
     <tbody>
@@ -48,6 +49,7 @@ const fetchAllCustomers = () => {
                         <td>{customer.email}</td>
                         <td>{customer.fatherName}</td>
                         <td>{customer.phone}</td>
+                       
                     </tr>
                 )
             }
@@ -59,4 +61,4 @@ const fetchAllCustomers = () => {
   )
 }
 
-export default AdminDashboard
+export default AdminView
