@@ -57,7 +57,7 @@ try {
 		
 		Optional<Customer> customer= custRepository.findById(custId);
 		if(customer.isPresent())
-			return accService.getAllAccounts(custId);
+			return ResponseEntity.ok(accService.getAllAccounts(custId));
 		else
 			throw new NoSuchCustomerExistsException("Customer Not found with this Id : "+custId);
 	}
