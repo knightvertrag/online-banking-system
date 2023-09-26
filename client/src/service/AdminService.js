@@ -34,8 +34,10 @@ class AdminService {
     try {
       const response = await axios.get(
         `http://localhost:8085/obs/admin/allCustomers`
+        
       );
-      return response.data;
+      //console.log(response.data);
+      return response;
     } catch (error) {
       console.error("Fetch Error: ", error);
     }
