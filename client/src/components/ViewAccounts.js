@@ -22,7 +22,6 @@ const ViewAccounts = () => {
 
   return (
     <div>
-      View account details
       <div className="row justify-content-center">
         {accounts.length > 0 ? (
           <table className="table table-success w-auto">

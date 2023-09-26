@@ -7,7 +7,12 @@
 
 .sidebar-item {
     cursor: pointer;
-    padding-left: 15px;
+    padding: 15px;
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.sidebaritem-active {
+    background-color: aqua;
 }

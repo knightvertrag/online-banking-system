@@ -13,9 +13,11 @@ const Sidebar = ({ setSelectedPage }) => {
         console.log(e);
         setActiveItem(e.target.innerHTML);
     }
+
+    const activeStyle = "sidebar-item sidebaritem-active";
     return (
         <div className="sidebar-main">
-            <div className="sidebar-item" value="Profile" onClick={(e) => changeSidebarItem(e)}>
+            <div className={activeItem === "Profile" ? activeStyle : `sidebar-item`} value="Profile" onClick={(e) => changeSidebarItem(e)}>
                 <FontAwesomeIcon icon={faUser} />
                 <SidebarItem name="Profile" icon="fa-regular fa-user" setSelectedPage={setSelectedPage} />
                 
@@ -26,7 +28,7 @@ const Sidebar = ({ setSelectedPage }) => {
                     <SidebarSubItem name="Edit Profile" setSelectedPage={setSelectedPage} />
                 </>
                 ) : <></>}
-            <div className="sidebar-item"  value="Account" onClick={(e) => changeSidebarItem(e)}>
+            <div className={activeItem === "Account" ? activeStyle : `sidebar-item`}  value="Account" onClick={(e) => changeSidebarItem(e)}>
                 <FontAwesomeIcon icon={faMoneyBillTransfer} />
                 <SidebarItem name="Account" icon="fa-money-bill-transfer" setSelectedPage={setSelectedPage} />
             </div>
@@ -35,7 +37,7 @@ const Sidebar = ({ setSelectedPage }) => {
                     <SidebarSubItem name="View Accounts" setSelectedPage={setSelectedPage} />
                 </>
                 ) : <></>}
-            <div className="sidebar-item"  value="Transaction" onClick={(e) => changeSidebarItem(e)}>
+            <div className={activeItem === "Transaction" ? activeStyle : `sidebar-item`}  value="Transaction" onClick={(e) => changeSidebarItem(e)}>
                 <FontAwesomeIcon icon={faBank} />
                 <SidebarItem name="Transaction" setSelectedPage={setSelectedPage} />
             </div>
