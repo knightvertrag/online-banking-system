@@ -1,19 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SidebarItem.css";
 
-
-const SidebarItem = ({ name,  setSelectedPage }) => {
-
-    const changeContent = () => {
-        setSelectedPage(name);
-    }
+const SidebarItem = ({name}) => {
 
     return (
-
-        <div className="sidebar-item-main" onClick={changeContent}>
+        <div className={`sidebaritem-main`}>
             {name}
         </div>
-
     );
 }
 
