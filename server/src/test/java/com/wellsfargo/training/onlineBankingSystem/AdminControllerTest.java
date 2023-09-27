@@ -65,12 +65,21 @@ private MockMvc mockMvc;
 		Admin admin = new Admin();
 		admin.setAdminId(adminId);
 		admin.setPassword("password");
-		
+		class AdminTest {
+			public Long adminId;
+			public String password;
+
+			AdminTest(Long adminId, String password) {
+				this.adminId = adminId;
+				this.password = password;
+			}
+		};
+		AdminTest creds = new AdminTest(1L, "password");
 		when(adminService.loginAdmin(eq(adminId))).thenReturn(Optional.of(admin));
-		
+		String requestBody = new ObjectMapper().writeValueAsString(creds);
 		mockMvc.perform(post("/admin/loginAdmin")
 		.contentType(MediaType.APPLICATION_JSON)
-		.content(new ObjectMapper().writeValueAsString(admin)))
+		.content(requestBody))
 		.andExpect(status().isOk())
 		.andExpect(content().string("true"));
 		
