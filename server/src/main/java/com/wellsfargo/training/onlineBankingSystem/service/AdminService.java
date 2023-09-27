@@ -3,6 +3,9 @@ package com.wellsfargo.training.onlineBankingSystem.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
+import com.wellsfargo.training.onlineBankingSystem.model.Account;
+import com.wellsfargo.training.onlineBankingSystem.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +25,9 @@ public class AdminService {
 	
 	@Autowired
 	public CustomerRepository custRepository;
+
+	@Autowired
+	private AccountRepository accountRepository;
 	
 	public Optional<Admin> loginAdmin(Long adminId){
 		return adminRepository.findById(adminId);
@@ -31,4 +37,24 @@ public class AdminService {
 		return custRepository.findAll();
 	}
 
+	public void addMoney(Long toAdd, Long accNo) throws NoSuchAccountExistsException {
+		Optional<Account> acc = accountRepository.findByAccNo(accNo);
+		if (acc.isPresent())
+		{
+			acc.get().setBalance(acc.get().getBalance() + toAdd);
+			accountRepository.save(acc.get());
+		} else {
+			throw new NoSuchAccountExistsException("Account not found with acc no: " + accNo);
+		}
+	}
+	public void deductMoney(Long toAdd, Long accNo) throws NoSuchAccountExistsException {
+		Optional<Account> acc = accountRepository.findByAccNo(accNo);
+		if (acc.isPresent())
+		{
+			acc.get().setBalance(acc.get().getBalance() - toAdd);
+			accountRepository.save(acc.get());
+		} else {
+			throw new NoSuchAccountExistsException("Account not found with acc no: " + accNo);
+		}
+	}
 }
