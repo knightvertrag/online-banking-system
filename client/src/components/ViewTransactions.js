@@ -26,7 +26,6 @@ const ViewTransactions = () => {
 
   return (
     <div className="app-container">
-      View transactions
       {accounts.length > 0 ? (
         <>
           <Dropdown onSelect={handleSelect}>

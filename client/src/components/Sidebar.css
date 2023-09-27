@@ -6,7 +6,13 @@
 }
 
 .sidebar-item {
-    padding-left: 15px;
+    cursor: pointer;
+    padding: 15px;
     display: flex;
     align-items: center;
+    width: 100%;
+}
+
+.sidebaritem-active {
+    background-color: aqua;
 }
