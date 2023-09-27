@@ -61,17 +61,5 @@ try {
 		else
 			throw new NoSuchCustomerExistsException("Customer Not found with this Id : "+custId);
 	}
-	
-	
-	@DeleteMapping("/deleteAccount/{accNo}")
-		public ResponseEntity<String> deleteAccount(@PathVariable(value="accNo") Long accNo){
-		Optional<Account> account=accService.getSingleAccount(accNo);
-		
-		if(account.isEmpty())
-			return ResponseEntity.notFound().build();
-		
-		accService.deleteAccount(accNo);
-		return ResponseEntity.ok("Account with Account Number "+accNo+ " has been deleted");
-	}
-	}
+}
 
