@@ -1,8 +1,8 @@
 .sidebar-main {
     flex: auto;
     flex-direction: column;
-    background-color: #b30000;
-    color: white;
+    background-color: #f1efef;
+    color: black;
 }
 
 .sidebar-item {
@@ -14,5 +14,5 @@
 }
 
 .sidebaritem-active {
-    background-color: aqua;
+    background-color: #ccc8aa;
 }

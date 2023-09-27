@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "admin")
 public class Admin {
 	
 	@Id
@@ -29,16 +30,6 @@ public class Admin {
 	
 	@Column(nullable=false)
 	private String password;
-	
-	@Column(nullable=false)
-	private String fatherName;
-	
-	@Column(nullable=false)
-	private String aadhar;
-	
-	@Column(nullable=false)
-	@JsonFormat(pattern="yyyy-MM-dd")
-	private Date dob;
 
 	public Admin() {
 		// TODO Auto-generated constructor stub
@@ -96,29 +87,6 @@ public class Admin {
         this.password = encodedString;
 	}
 
-	public String getFatherName() {
-		return fatherName;
-	}
-
-	public void setFatherName(String fatherName) {
-		this.fatherName = fatherName;
-	}
-
-	public String getAadhar() {
-		return aadhar;
-	}
-
-	public void setAadhar(String aadhar) {
-		this.aadhar = aadhar;
-	}
-
-	public Date getDob() {
-		return dob;
-	}
-
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
 	
 	
 	
