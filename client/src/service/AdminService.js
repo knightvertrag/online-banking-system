@@ -41,7 +41,20 @@ class AdminService {
     } catch (error) {
       console.error("Fetch Error: ", error);
     }
+
+    
   }
+  static async deactivateAccount(accntNo){
+    try {
+      const response = await axios.post(
+        `http://localhost:8085/obs/admin/deactivateAccount/` + accntNo
+      );
+      return response
+    } catch(error){
+      console.error("Fetch error: ", error);
+    }
+  }
+
 }
 
 export default AdminService;
