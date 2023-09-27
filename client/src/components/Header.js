@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import "./Header.css";
 
 const Header = ({isLoggedIn, setIsLoggedIn}) => {
   const history = useNavigate();
@@ -11,7 +12,7 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
 
   }
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-primary sticky-top">
+    <nav className="navbar navbar-expand-lg navbar-light sticky-top navbar-main">
       <div className="container justify-content-between">
         <div>
           <Link className="navbar-brand" to="/">

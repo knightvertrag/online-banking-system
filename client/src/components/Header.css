@@ -31,3 +31,7 @@
       height: auto;
     }
   }
+
+  .navbar-main {
+    background-color: #f1efef !important;
+  }

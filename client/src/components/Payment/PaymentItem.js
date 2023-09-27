@@ -54,10 +54,10 @@ const PaymentItem = ({ value, accounts, setSelectedPage }) => {
     }
     if (!transaction.transPassword) {
       validationErrors.transPassword = "Transaction password is required.";
-    } else if (!/^\d{6}$/.test(transaction.transPassword)) {
-      validationErrors.transPassword =
-        "Invalid transaction password. Please enter a 6-digit number.";
-    }
+     }// else if (!/^\d{6}$/.test(transaction.transPassword)) {
+    //   validationErrors.transPassword =
+    //     "Invalid transaction password. Please enter a 6-digit number.";
+    // }
     return validationErrors;
   };
   const handleSubmit = async (e) => {

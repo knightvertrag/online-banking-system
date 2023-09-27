@@ -5,6 +5,7 @@ import ViewAccounts from "../ViewAccounts";
 import EditProfile from "../EditProfile";
 import ViewProfile from "../ViewProfile";
 import ViewTransactions from "../ViewTransactions";
+import OpenAccount from "../OpenAccount";
 
 const Content = ({selectedPage, profile, setSelectedPage}) => {
     let page;
@@ -21,6 +22,9 @@ const Content = ({selectedPage, profile, setSelectedPage}) => {
             break;
         case "View Accounts":
             page = <ViewAccounts profile={profile}/>
+            break;
+        case "Open Account":
+            page = <OpenAccount profile={profile}/>
             break;
         case "View Transactions":
             page = <ViewTransactions />
