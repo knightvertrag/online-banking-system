@@ -24,9 +24,9 @@ const fetchAllCustomers = () => {
     <div> <br/>
     <div className="row justify-content-center" >
 
-    <table className="table table-success w-auto">
+    <table className="table table-bordered table-striped w-auto">
      <thead>
-        <tr className="table-danger">
+        <tr className="table-active">
             <th>Customer Id</th>
             <th>First Name</th>
             <th>Last Name</th>

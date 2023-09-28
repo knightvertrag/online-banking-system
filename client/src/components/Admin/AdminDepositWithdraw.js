@@ -6,7 +6,7 @@ const AdminDepositWithdraw = ({}) => {
     const [transact, setTransact] = useState('');
     const [accntNo, setAccntNo] = useState('');
     const [amount, setAmount] = useState('');
-    
+    const [successMessage , setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
   
     const handleDeposit = async () => {
@@ -19,6 +19,7 @@ const AdminDepositWithdraw = ({}) => {
       try {
         const apiResponse = await AdminService.deposit(transact);
         console.log('API response: ', apiResponse);
+        setSuccessMessage(apiResponse.data);
         
       }
       catch (error) {
@@ -36,6 +37,7 @@ const AdminDepositWithdraw = ({}) => {
         try {
           const apiResponse = await AdminService.withdraw(transact);
           console.log('API response: ', apiResponse);
+          setSuccessMessage(apiResponse.data);
           
         }
         catch (error) {
@@ -82,6 +84,8 @@ const AdminDepositWithdraw = ({}) => {
               </button>
   
               {errorMessage && <p className='error-message'>{errorMessage}</p>}
+              {successMessage && <p className='successMessage'>{successMessage}</p>}
+
             </div>
           
           <div>
