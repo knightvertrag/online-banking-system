@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoneyBillTransfer, faUser } from "@fortawesome/free-solid-svg-icons";
 import Admin from "./Admin";
 import SidebarItem from "../Sidebar/SidebarItem";
+import SidebarSubItem from "../Sidebar/SidebarSubItem";
 
 const AdminSidebar = ({ setSelectedPage }) => {
 
@@ -23,7 +24,7 @@ const AdminSidebar = ({ setSelectedPage }) => {
             </div>
             {activeItem === "View all customers" ? (
                 <>
-                    <SidebarItem name="View all customers" setSelectedPage={setSelectedPage} />
+                    <SidebarSubItem name="View all customers" setSelectedPage={setSelectedPage} />
                     
                 </>
                 ) : <></>}
@@ -33,7 +34,7 @@ const AdminSidebar = ({ setSelectedPage }) => {
             </div>
             {activeItem === "Deactivate or Activate" ? (
                 <>
-                    <SidebarItem name="Deactivate or Activate" setSelectedPage={setSelectedPage} />
+                    <SidebarSubItem name="Deactivate or Activate" setSelectedPage={setSelectedPage} />
                     
                 </>
                 ) : <></>}
@@ -43,7 +44,7 @@ const AdminSidebar = ({ setSelectedPage }) => {
             </div>
             {activeItem === "Deposit or Withdraw" ? (
                 <>
-                    <SidebarItem name="Deposit or Withdraw" setSelectedPage={setSelectedPage} />
+                    <SidebarSubItem name="Deposit or Withdraw" setSelectedPage={setSelectedPage} />
                     
                 </>
                 ) : <></>}
