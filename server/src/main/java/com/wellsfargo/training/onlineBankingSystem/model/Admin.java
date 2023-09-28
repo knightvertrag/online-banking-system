@@ -7,6 +7,7 @@ import java.util.Base64;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 
 @Entity
 @Table(name = "admin")
