@@ -47,7 +47,7 @@ public class AdminController {
 		String password=admin.getPassword();
 		
 		Admin ad= adminService.loginAdmin(adminId).orElseThrow(()->
-		new NoSuchCustomerExistsException("Admin Not Found for this ID::"));
+		new NoSuchCustomerExistsException("Admin Not Found for this ID::" + adminId));
 		
 		if(adminId.equals(ad.getAdminId()) && password.equals(ad.getPassword()))
 				{
