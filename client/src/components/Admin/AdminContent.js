@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import "./Dashboard/Content.css";
+import "../Dashboard/Content.css";
 
 import AdminView from "./AdminView";
 import AdminDelete from "./AdminDelete";
+import AdminDepositWithdraw from "./AdminDepositWithdraw";
 
 const AdminContent = ({selectedPage, profile, setSelectedPage}) => {
     let page;
@@ -11,18 +12,16 @@ const AdminContent = ({selectedPage, profile, setSelectedPage}) => {
         case "View all customers":
             page = <AdminView />
             break;
-            case "Deactivate account":
-                page = <AdminDelete/>
-                break;
-      
-       
-          
+        case "Deactivate or Activate":
+            page = <AdminDelete/>
+            break;   
+        case "Deposit or Withdraw":
+            page = <AdminDepositWithdraw />
+            break;       
         default:
-            page =<AdminView/>
+            page =<AdminDelete/>
             break;
-    }
-    
-   
+    }   
     return (
         <div className="content-main">
             {/* {custId} */}

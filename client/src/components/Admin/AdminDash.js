@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./Auth.css";
+import "../Auth.css";
 import { useState } from "react";
-import AdminService from "../service/AdminService";
+
 import AdminSidebar from "./AdminSidebar";
-import Header from "./Header";
+
 import AdminContent from "./AdminContent"
-import "./Dashboard.css";
+import "../Dashboard.css";
 
 const AdminDash = ({fetchProfile, isLoggedIn, profile}) => {
     const history=useNavigate();

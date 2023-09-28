@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router";
-import AdminService from "../service/AdminService";
+import AdminService from "../../service/AdminService";
+
 
 const AdminView = () => {
   

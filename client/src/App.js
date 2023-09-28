@@ -13,10 +13,9 @@ import { useEffect, useState } from "react";
 import PaymentForm from "./components/PaymentForm";
 import ViewProfile from "./components/ViewProfile";
 import EditProfile from "./components/EditProfile";
-import AdminDashboard from "./components/AdminView";
-import Admin from "./components/Admin";
-import AdminDash from "./components/AdminDash";
-import AdminDelete from "./components/AdminDelete";
+import Admin from "./components/Admin/Admin";
+import AdminDelete from "./components/Admin/AdminDelete";
+import AdminDash from "./components/Admin/AdminDash";
 
 
 
