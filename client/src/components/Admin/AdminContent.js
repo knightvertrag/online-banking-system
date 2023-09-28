@@ -19,7 +19,6 @@ const AdminContent = ({selectedPage, profile, setSelectedPage}) => {
             page = <AdminDepositWithdraw />
             break;       
         default:
-            page =<AdminDepositWithdraw/>
             break;
     }   
     return (
