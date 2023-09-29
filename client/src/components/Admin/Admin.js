@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./Auth.css";
+import "../Auth.css";
 import { useNavigate } from "react-router-dom";
+import AdminService from "../../service/AdminService";
 
-import AdminService from "../service/AdminService";
 
 
 const Admin = ({setIsLoggedIn}) => {

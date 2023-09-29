@@ -65,7 +65,7 @@ public class AdminController {
 		return ResponseEntity.ok(customers);
 	}
 	
-	@GetMapping("/deactivateAccount/{accNo}")
+	@PostMapping("/deactivateAccount/{accNo}")
 	public ResponseEntity<String> deactivateCustomerAccount(@PathVariable (value="accNo") Long accNo) {
 		Optional<Account> account=accService.getSingleAccount(accNo);
 		
