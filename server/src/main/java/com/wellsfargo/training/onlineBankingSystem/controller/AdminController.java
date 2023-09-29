@@ -98,7 +98,7 @@ public class AdminController {
 		try {
 			adminService.addMoney(amount, accNo);
 		} catch (NoSuchAccountExistsException e) {
-			return new ResponseEntity<>("Failed to deposit amount: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Failed to deposit amount: " + e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<String>("Amount deposited Successfully", HttpStatus.OK);
 	}
@@ -108,7 +108,7 @@ public class AdminController {
 		try {
 			adminService.deductMoney(amount, accNo);
 		} catch (NoSuchAccountExistsException e) {
-			return new ResponseEntity<>("Failed to withdraw amount: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Failed to withdraw amount: " + e.getMessage(), HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<String>("Amount withdrawn Successfully", HttpStatus.OK);
 	}

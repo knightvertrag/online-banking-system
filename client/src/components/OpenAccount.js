@@ -143,7 +143,7 @@ const OpenAccount = ({ profile }) => {
             readOnly={true}
           />
 
-          <div className="mb-3">
+          {/* <div className="mb-3">
             <label>Address</label>
             <input
               type="text"
@@ -154,7 +154,7 @@ const OpenAccount = ({ profile }) => {
               onChange={handleChange}
             />
             {errors.address && <p className="error-message">{errors.address}</p>}
-          </div>
+          </div> */}
 
         </div>
         <div className="mb-3">

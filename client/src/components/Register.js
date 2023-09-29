@@ -18,6 +18,7 @@ const Register = () => {
     lastName: '',
     password: '',
     phone: '',
+    address:''
     
   });
 
@@ -53,6 +54,11 @@ const Register = () => {
     if (!customer.dob) {
       validationErrors.dob = 'Date of Birth is required.';
     } 
+
+    if (!customer.address) {
+      validationErrors.address = 'Address is required.';
+    } 
+
 
     if (!customer.email) {
       validationErrors.email = 'Email is required.';
@@ -207,6 +213,17 @@ const Register = () => {
               value={customer.dob}
               onChange={handleChange}/>
               {errors.dob && <p className="error-message">{errors.dob}</p>}
+
+          </div>
+          <div className="mb-3">
+            <label>Address</label>
+            <input type="text" 
+            className="form-control" 
+            placeholder="Enter your address"
+            name="address"
+              value={customer.address}
+              onChange={handleChange}/>
+              {errors.address && <p className="error-message">{errors.address}</p>}
 
           </div>
           <div className="mb-3">
