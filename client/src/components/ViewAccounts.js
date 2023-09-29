@@ -24,9 +24,9 @@ const ViewAccounts = () => {
     <div>
       <div className="row justify-content-center">
         {accounts.length > 0 ? (
-          <table className="table table-success w-auto">
-            <thead>
-              <tr className="table-danger">
+          <table className="table table-bordered table-striped w-auto">
+          <thead>
+             <tr className="table-active">
                 <th> Account No.</th>
                 <th> Balance</th>
                 <th> Account Status</th>

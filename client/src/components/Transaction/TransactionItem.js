@@ -18,9 +18,9 @@ export const TransactionItem = ({ accNo }) => {
   return (
     <div className="row justify-content-center m-5">
       {transactions.length > 0 ? (
-        <table className="table table-success w-auto">
-          <thead>
-            <tr className="table-danger">
+        <table className="table table-bordered table-striped w-auto">
+        <thead>
+           <tr className="table-active">
               <th> Sender Account No.</th>
               <th> Receiver Account No.</th>
               <th> Amount</th>

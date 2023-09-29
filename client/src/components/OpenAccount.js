@@ -101,16 +101,18 @@ const OpenAccount = ({ profile }) => {
 
 
   return (
-    <div className="container mx-auto padding:20px" style={{ width: '600px' }}>
+    <div className=" justify-content-center text-left center-screen">
+      <div className="auth-inner m-5">
+    {/* <div className="container mx-auto padding:20px" style={{ width: '600px' }}> */}
       <form onSubmit={handleSubmit}>
         <h3>Open Account</h3>
 
         {successMessage && <p className="success-message">{successMessage}</p>}
-        {customer.id}
-        <div className="mb-3 mt-10">
-          <label>First name</label>
+  
+        <div className="mb-3 d-inline">
+          <label className="form-label">First name</label>
           <input
-
+            className="form-control"
             name="firstName"
             value={customer.firstName}
             onChange={handleChange}
@@ -122,6 +124,7 @@ const OpenAccount = ({ profile }) => {
         <div className="mb-3">
           <label>Last name</label>
           <input
+          className="form-control"
             name="lastName"
             value={customer.lastName}
             onChange={handleChange}
@@ -133,7 +136,7 @@ const OpenAccount = ({ profile }) => {
         <div className="mb-3">
           <label>Contact number</label>
           <input
-
+          className="form-control"
             name="phone"
             value={customer.phone}
             onChange={handleChange}
@@ -160,6 +163,7 @@ const OpenAccount = ({ profile }) => {
             readOnly={true}
             name="email"
             value={customer.email}
+            className="form-control"
             onChange={handleChange}
           />
 
@@ -168,6 +172,7 @@ const OpenAccount = ({ profile }) => {
         <div className="mb-3">
           <label>Father's name</label>
           <input
+          className="form-control"
             readOnly={true}
             name="fatherName"
             value={customer.fatherName}
@@ -179,6 +184,7 @@ const OpenAccount = ({ profile }) => {
         <div className="mb-3">
           <label>Aadhar number</label>
           <input
+          className="form-control"
             readOnly={true}
             name="aadhar"
             value={customer.aadhar}
@@ -189,6 +195,7 @@ const OpenAccount = ({ profile }) => {
         <div className="mb-3">
           <label>Date of Birth</label>
           <input
+          className="form-control"
             name="dob"
             value={customer.dob}
             onChange={handleChange}
@@ -235,8 +242,9 @@ const OpenAccount = ({ profile }) => {
         </p>
       </form>
 
-
     </div>
+    </div>
+    // </div>
   );
 };
 
