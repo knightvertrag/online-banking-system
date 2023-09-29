@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import AuthenticationService from "../service/AuthenticationService";
 import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
-import { Button } from "bootstrap";
+import { Button } from "react-bootstrap";
 import AccountsService from "../service/AccountsService";
 
 
@@ -232,14 +232,11 @@ const OpenAccount = ({ profile }) => {
         </div>
         <div >
           {/* className="d-grid" */}
-          <button type="submit" className="btn btn-primary">
+          <Button type="submit" variant='light'>
             Submit
-          </button>
+          </Button>
 
         </div>
-        <p>
-          Already registered <Link to="/login">sign in?</Link>
-        </p>
       </form>
 
     </div>

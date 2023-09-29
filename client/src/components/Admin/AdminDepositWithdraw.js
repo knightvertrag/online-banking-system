@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import AdminService from "../../service/AdminService";
 import "../Login.css"
+import { Button } from "react-bootstrap";
 const AdminDepositWithdraw = ({}) => {
     
     const [transact, setTransact] = useState('');
@@ -75,13 +76,13 @@ const AdminDepositWithdraw = ({}) => {
               />
             </div>
             <div className="d-grid">
-              <button type="submit" className="btn btn-primary" onClick={handleDeposit}>
+              <Button type="submit" variant='light' onClick={handleDeposit}>
                 Deposit
-              </button>
+              </Button>
               <br /> 
-              <button type="submit" className="btn btn-primary" onClick={handleWithdraw}>
+              <Button type="submit" variant='light' onClick={handleWithdraw}>
                 Withdraw
-              </button>
+              </Button>
   
               {errorMessage && <p className='error-message'>{errorMessage}</p>}
               {successMessage && <p className='successMessage'>{successMessage}</p>}

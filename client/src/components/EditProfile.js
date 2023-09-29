@@ -1,6 +1,7 @@
 import React,{ useEffect, useState } from 'react'
 import { useParams,useNavigate } from 'react-router-dom';
 import CustomerService from '../service/CustomerService';
+import { Button } from 'react-bootstrap';
 
 
 const EditProfile = ({profile}) => {
@@ -222,8 +223,8 @@ const EditProfile = ({profile}) => {
               {errors.dob && <p className="error-message">{errors.dob}</p>}
 
           </div>
-          <button className="btn btn-success" onClick={UpdateCustomer}>Update</button>
-          <button className="btn btn-danger" onClick={cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+          <Button variant='light' onClick={UpdateCustomer}>Update</Button>
+          <Button variant='light' onClick={cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</Button>
         </form>
        
       </div>
