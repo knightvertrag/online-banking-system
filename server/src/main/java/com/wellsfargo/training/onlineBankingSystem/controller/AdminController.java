@@ -3,6 +3,8 @@ package com.wellsfargo.training.onlineBankingSystem.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.wellsfargo.training.onlineBankingSystem.exception.DeactivatedAccountException;
+import com.wellsfargo.training.onlineBankingSystem.exception.InsufficientBalanceException;
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -102,7 +104,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/withdraw/{accNo}/{amnt}")
-	public ResponseEntity<String> withdrawMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) {
+	public ResponseEntity<String> withdrawMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) throws DeactivatedAccountException, InsufficientBalanceException {
 		try {
 			adminService.deductMoney(amount, accNo);
 		} catch (NoSuchAccountExistsException e) {

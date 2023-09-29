@@ -3,6 +3,8 @@ package com.wellsfargo.training.onlineBankingSystem.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.wellsfargo.training.onlineBankingSystem.exception.DeactivatedAccountException;
+import com.wellsfargo.training.onlineBankingSystem.exception.InsufficientBalanceException;
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
 import com.wellsfargo.training.onlineBankingSystem.model.Account;
 import com.wellsfargo.training.onlineBankingSystem.repository.AccountRepository;
@@ -47,10 +49,16 @@ public class AdminService {
 			throw new NoSuchAccountExistsException("Account not found with acc no: " + accNo);
 		}
 	}
-	public void deductMoney(Long toAdd, Long accNo) throws NoSuchAccountExistsException {
+	public void deductMoney(Long toAdd, Long accNo) throws NoSuchAccountExistsException, DeactivatedAccountException, InsufficientBalanceException {
 		Optional<Account> acc = accountRepository.findByAccNo(accNo);
 		if (acc.isPresent())
 		{
+			if(acc.get().getIsActive()==0) {
+				throw new DeactivatedAccountException("This account is not active");
+			}
+			else if(acc.get().getBalance()<toAdd) {
+				throw new InsufficientBalanceException("Insufficient Balance");
+			}
 			acc.get().setBalance(acc.get().getBalance() - toAdd);
 			accountRepository.save(acc.get());
 		} else {
