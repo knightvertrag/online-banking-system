@@ -6,11 +6,15 @@ import EditProfile from "../EditProfile";
 import ViewProfile from "../ViewProfile";
 import ViewTransactions from "../ViewTransactions";
 import OpenAccount from "../OpenAccount";
+import DashboardHome from "../DashboardHome";
 
 const Content = ({selectedPage, profile, setSelectedPage}) => {
     let page;
     
     switch (selectedPage) {
+        case("Dashboard Home"):
+            page=<DashboardHome profile={profile}/>
+            break;
         case "Edit Profile":
             page = <EditProfile profile={profile}/>
             break;

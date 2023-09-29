@@ -16,6 +16,7 @@ import EditProfile from "./components/EditProfile";
 import Admin from "./components/Admin/Admin";
 import AdminDelete from "./components/Admin/AdminDelete";
 import AdminDash from "./components/Admin/AdminDash";
+import DashboardHome from "./components/DashboardHome";
 
 
 
@@ -44,7 +45,8 @@ function App() {
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/openaccount" element={<OpenAccount profile={profile}/>} />
-            <Route path="/dashboard" element={<Dashboard fetchProfile={fetchProfile} profile={profile}/>} />
+            <Route path="/dashboard" element={<Dashboard fetchProfile={fetchProfile} profile={profile}/>} /> 
+            <Route path="/dashboardhome" element={<DashboardHome profile={profile}/>}></Route>
             <Route path="/payment" element={<PaymentForm />} />
             <Route path="viewProfile/:id" element={<ViewProfile profile={profile}/>} />
             <Route path="editProfile/:id" element={<EditProfile profile={profile}/>} />
