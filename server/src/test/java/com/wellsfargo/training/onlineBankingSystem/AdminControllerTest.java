@@ -22,11 +22,14 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wellsfargo.training.onlineBankingSystem.controller.AdminController;
+import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
+import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchCustomerExistsException;
 import com.wellsfargo.training.onlineBankingSystem.model.Account;
 import com.wellsfargo.training.onlineBankingSystem.model.Admin;
 import com.wellsfargo.training.onlineBankingSystem.model.Customer;
@@ -82,6 +85,35 @@ private MockMvc mockMvc;
 		.content(requestBody))
 		.andExpect(status().isOk())
 		.andExpect(content().string("true"));
+		
+	}
+	
+	@Test
+	public void testLoginAdminFail() throws Exception {
+		Long adminId=1L;
+		Admin admin = new Admin();
+		admin.setAdminId(adminId);
+		admin.setPassword("password");
+		
+		//Becuase setPassword is hashing the password which is not being compared
+		
+		class AdminTest {
+			public Long adminId;
+			public String password;
+
+			AdminTest(Long adminId, String password) {
+				this.adminId = adminId;
+				this.password = password;
+			}
+		};
+		AdminTest creds = new AdminTest(1L, "password");
+		when(adminService.loginAdmin(eq(adminId))).thenThrow(new NoSuchCustomerExistsException("Admin Not Found for this ID::" + adminId));
+		String requestBody = new ObjectMapper().writeValueAsString(creds);
+		mockMvc.perform(post("/admin/loginAdmin")
+		.contentType(MediaType.APPLICATION_JSON)
+		.content(requestBody))
+		.andExpect(status().isBadRequest())
+		.andExpect(content().string("Admin Not Found for this ID::" + adminId));
 		
 	}
 	
@@ -144,6 +176,120 @@ private MockMvc mockMvc;
 		Mockito.verify(accRepository).save(any(Account.class));
 		
 	}
+	
+	@Test
+	public void testDeactivateAccountFail() throws Exception {
+		Long accNo=100L;
+		Account acc = new Account();
+		
+		acc.setBalance(100);
+		acc.setIsActive(1);
+		acc.setTransPassword("transpassword");
+		acc.setAccNo(accNo);
+		
+		
+		when(accService.getSingleAccount(accNo)).thenReturn(Optional.empty() );
+		mockMvc.perform(get("/admin/deactivateAccount/{accNo}",accNo))
+		.andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void testActivateCustomerAccount() throws Exception {
+		Long accNo=100L;
+		Account acc = new Account();
+		
+		acc.setBalance(100);
+		acc.setIsActive(1);
+		acc.setTransPassword("transpassword");
+		acc.setAccNo(accNo);
+		
+		
+		when(accService.getSingleAccount(accNo)).thenReturn(Optional.of(acc) );
+		mockMvc.perform(get("/admin/activateAccount/{accNo}",accNo))
+		.andExpect(status().isOk())
+		.andExpect(content().string("Account with Account Number "+accNo+" has been activated"));
+		
+		Mockito.verify(accRepository).save(any(Account.class));
+		
+	}
+	
+	@Test
+	public void testActivateAccountFail() throws Exception {
+		Long accNo=100L;
+		Account acc = new Account();
+		
+		acc.setBalance(100);
+		acc.setIsActive(1);
+		acc.setTransPassword("transpassword");
+		acc.setAccNo(accNo);
+		
+		
+		when(accService.getSingleAccount(accNo)).thenReturn(Optional.empty() );
+		mockMvc.perform(get("/admin/activateAccount/{accNo}",accNo))
+		.andExpect(status().isNotFound());
+	}
+	
+	@Test
+	public void testDepositMoney() throws Exception {
+		Long accNo=100L;
+		Long amount = 1000L;
+		Account acc = new Account();
+		
+		acc.setBalance(100);
+		acc.setIsActive(1);
+		acc.setTransPassword("transpassword");
+		acc.setAccNo(accNo);
+		
+		Mockito.doNothing().when(adminService).addMoney(eq(amount), eq(accNo));
+		
+		mockMvc.perform(MockMvcRequestBuilders
+				.post("/admin/deposit/{accNo}/{amnt}",accNo,amount)
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().string("Amount deposited Successfully"));
+	}
+	
+	@Test
+	public void testWithdrawMoney() throws Exception {
+		Long accNo=100L;
+		Long amount = 1000L;
+		Account acc = new Account();
+		
+		acc.setBalance(100);
+		acc.setIsActive(1);
+		acc.setTransPassword("transpassword");
+		acc.setAccNo(accNo);
+		
+		Mockito.doNothing().when(adminService).deductMoney(eq(amount), eq(accNo));
+		
+		mockMvc.perform(MockMvcRequestBuilders
+				.post("/admin/withdraw/{accNo}/{amnt}",accNo,amount)
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().string("Amount withdrawn Successfully"));
+	}
+	
+//	@Test
+//	public void testWithdrawMoneyFail() throws Exception {
+//		
+//		Long accNo=100L;
+//		Long amount = 1000L;
+//		Account acc = new Account();
+//		
+//		acc.setBalance(100);
+//		acc.setIsActive(1);
+//		acc.setTransPassword("transpassword");
+//		acc.setAccNo(accNo);
+//		
+//		
+//		
+//		mockMvc.perform(MockMvcRequestBuilders
+//				.post("/admin/withdraw/{accNo}/{amnt}",accNo,amount)
+//				.contentType(MediaType.APPLICATION_JSON))
+//				.andExpect(status().isOk())
+//				.andExpect(content().string("Amount withdrawn Successfully"));
+//		
+//	}
 
 	
 }

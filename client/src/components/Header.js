@@ -24,11 +24,11 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
           <ul className="navbar-nav ml-auto d-flex flex-row">
             {isLoggedIn ? (
               <>
-                <li className="nav-item p-2">
+                {/* <li className="nav-item p-2">
                   <Link className="nav-link" to="/openaccount">
                   <Button variant='light'>Open Account</Button>
                   </Link>
-                </li>
+                </li> */}
                 <li className="nav-item p-2">
                   <Link className="nav-link" to="/dashboard">
                   <Button variant='light'>Dashboard</Button>
@@ -36,8 +36,11 @@ const Header = ({isLoggedIn, setIsLoggedIn}) => {
                   </Link>
                 </li>
                 <li className="nav-item p-2">
-                <Button variant='light' className="nav-link"
-                    onClick={logOut}>Log out</Button>
+                <Link className="nav-link" to="/">
+                  <Button variant='light' onClick={logOut}>Log Out</Button>
+                  </Link>
+                {/* <Button variant='light' className="nav-link"
+                    onClick={logOut}>Log out</Button> */}
                   {/* <button
                     className="nav-link"
                     onClick={logOut}

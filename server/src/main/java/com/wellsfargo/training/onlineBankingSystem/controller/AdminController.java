@@ -3,6 +3,8 @@ package com.wellsfargo.training.onlineBankingSystem.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.wellsfargo.training.onlineBankingSystem.exception.DeactivatedAccountException;
+import com.wellsfargo.training.onlineBankingSystem.exception.InsufficientBalanceException;
 import com.wellsfargo.training.onlineBankingSystem.exception.NoSuchAccountExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -65,7 +67,7 @@ public class AdminController {
 		return ResponseEntity.ok(customers);
 	}
 	
-	@GetMapping("/deactivateAccount/{accNo}")
+	@PostMapping("/deactivateAccount/{accNo}")
 	public ResponseEntity<String> deactivateCustomerAccount(@PathVariable (value="accNo") Long accNo) {
 		Optional<Account> account=accService.getSingleAccount(accNo);
 		
@@ -92,22 +94,20 @@ public class AdminController {
 	}
 
 	@PostMapping("/deposit/{accNo}/{amnt}")
-	public ResponseEntity<String> depositMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) {
+	public ResponseEntity<String> depositMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) throws DeactivatedAccountException {
 		try {
 			adminService.addMoney(amount, accNo);
 		} catch (NoSuchAccountExistsException e) {
-			System.out.println(e.getMessage());
 			return new ResponseEntity<>("Failed to deposit amount: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>("Amount deposited Successfully", HttpStatus.OK);
 	}
 
 	@PostMapping("/withdraw/{accNo}/{amnt}")
-	public ResponseEntity<String> withdrawMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) {
+	public ResponseEntity<String> withdrawMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) throws DeactivatedAccountException, InsufficientBalanceException {
 		try {
 			adminService.deductMoney(amount, accNo);
 		} catch (NoSuchAccountExistsException e) {
-			System.out.println(e.getMessage());
 			return new ResponseEntity<>("Failed to withdraw amount: " + e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<String>("Amount withdrawn Successfully", HttpStatus.OK);
