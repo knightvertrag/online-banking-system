@@ -3,7 +3,7 @@ import React from "react";
 function Footer() {
   return (
     <div
-      className="fixed-bottom"
+      
       style={{
         textAlign: "center",
         color: "white",

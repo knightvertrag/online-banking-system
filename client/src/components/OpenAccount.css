@@ -1,0 +1,42 @@
+.view-profile-main {
+    position: relative;
+    
+    width: 80%;
+    margin: auto;
+    margin-top: 5vh;
+    box-shadow: rgba(0, 0, 0, 0.14) 0 0 10px;
+    border-radius: 10px;
+    font-family: 'Nunito';
+    font-weight: 600;
+    padding: 40px;
+}
+
+.view-profile-heading {
+    font-size: xx-large;
+}
+
+.view-profile-sub-heading {
+    font-size: large;
+    color: grey;
+}
+
+
+.view-profile-form-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.btn-main {
+    display: block;
+    padding: 10px 30px;
+    letter-spacing: 1px;
+    font-size: 1.05em;
+    border-radius: 5px;
+    border: none;
+    color: #e6e6e6;
+    background: #ff7300;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 30px;
+}
