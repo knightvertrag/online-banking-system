@@ -39,10 +39,13 @@ public class AdminService {
 		return custRepository.findAll();
 	}
 
-	public void addMoney(Long toAdd, Long accNo) throws NoSuchAccountExistsException {
+	public void addMoney(Long toAdd, Long accNo) throws NoSuchAccountExistsException, DeactivatedAccountException {
 		Optional<Account> acc = accountRepository.findByAccNo(accNo);
 		if (acc.isPresent())
 		{
+			if(acc.get().getIsActive()==0) {
+				throw new DeactivatedAccountException("This account is not active");
+			}
 			acc.get().setBalance(acc.get().getBalance() + toAdd);
 			accountRepository.save(acc.get());
 		} else {

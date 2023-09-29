@@ -94,7 +94,7 @@ public class AdminController {
 	}
 
 	@PostMapping("/deposit/{accNo}/{amnt}")
-	public ResponseEntity<String> depositMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) {
+	public ResponseEntity<String> depositMoney(@PathVariable (value="accNo") Long accNo, @PathVariable (value="amnt") Long amount) throws DeactivatedAccountException {
 		try {
 			adminService.addMoney(amount, accNo);
 		} catch (NoSuchAccountExistsException e) {
