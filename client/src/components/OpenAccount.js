@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import AuthenticationService from "../service/AuthenticationService";
 import { Link, useNavigate } from "react-router-dom";
 import "./Auth.css";
-import { Button } from "react-bootstrap";
+import "./OpenAccount.css";
+import FormInput from "./FormInput";
+import { Button } from "bootstrap";
+
 import AccountsService from "../service/AccountsService";
 
 
@@ -14,7 +17,7 @@ const OpenAccount = ({ profile }) => {
     isActive: 1
   });
   const [customer, setCustomer] = useState({
-    id:profile.custId,
+    id: profile.custId,
     aadhar: profile.aadhar,
     dob: profile.dob,
     email: profile.email,
@@ -43,13 +46,13 @@ const OpenAccount = ({ profile }) => {
     }
     // else if (/0/.test(account.balance)) {
     //   validationErrors.balance = 'Balance can not be 0';
-      if (!account.transPassword) {
-        validationErrors.password = 'Transaction Password is required.';
-      } else if (account.transPassword.length < 6) {
-        validationErrors.transPassword = 'Password must be at least 6 characters.';
-      }
+    if (!account.transPassword) {
+      validationErrors.password = 'Transaction Password is required.';
+    } else if (account.transPassword.length < 6) {
+      validationErrors.password = "Transaction Password length must be at least 6 characters";
+    }
 
-      return validationErrors;
+    return validationErrors;
     // }
   };
   const handleSubmit = async (e) => {
@@ -98,150 +101,41 @@ const OpenAccount = ({ profile }) => {
     // }
   };
 
-
-
   return (
-    <div className=" justify-content-center text-left center-screen">
-      <div className="auth-inner m-5">
-    {/* <div className="container mx-auto padding:20px" style={{ width: '600px' }}> */}
-      <form onSubmit={handleSubmit}>
-        <h3>Open Account</h3>
+    <div className="view-profile-main">
+      <div className="view-profile-heading">Open Account</div>
+      <div className="view-profile-sub-heading">Open an account for customer: {profile.custId}</div>
+      <hr />
+      <form className="view-profile-form-main" onSubmit={handleSubmit}>
+        <div className="view-profile-form-row">
+          <FormInput readOnly={true} title="First Name" type="text" name="firstName" value={customer.firstName} onChange={handleChange} />
+          <FormInput readOnly={true}  title="Last Name" type="text" name="lastName" value={customer.lastName} onChange={handleChange} />
+        </div>
+        <div className="view-profile-form-row">
+          <FormInput readOnly={true} title="Email" type="email" name="email" value={customer.email} onChange={handleChange} />
+          <FormInput readOnly={true} title="Phone" type="phone" name="phone" value={customer.phone} onChange={handleChange} />
+        </div>
+        <div className="view-profile-form-row">
+          <FormInput readOnly={true} title="Aadhar" type="text" name="aadhar" value={customer.aadhar} onChange={handleChange} />
+          <FormInput readOnly={true} title="Date of Birth" type="date" name="dob" value={customer.dob} onChange={handleChange} />
 
+        </div>
+        <div className="view-profile-form-row">
+          <FormInput title={`Balance`} type={`number`} name="balance" value={account.balance} onChange={handleChange} errors={errors.balance}/>
+          <FormInput title="Transaction Password" type="password" name="transPassword" value={account.transPassword} onChange={handleChange} errors={errors.password} />
+        </div>
+        <div className="view-profile-form-row">
+          <FormInput title="Address" type="text" width={`100%`} name="address" value={customer.address} onChange={handleChange} errors={errors.address}/>
+        </div>
+
+        <button type="submit" className="btn-main">
+          Submit
+        </button>
         {successMessage && <p className="success-message">{successMessage}</p>}
-  
-        <div className="mb-3 d-inline">
-          <label className="form-label">First name</label>
-          <input
-            className="form-control"
-            name="firstName"
-            value={customer.firstName}
-            onChange={handleChange}
-            readOnly={true}
-          />
 
-
-        </div>
-        <div className="mb-3">
-          <label>Last name</label>
-          <input
-          className="form-control"
-            name="lastName"
-            value={customer.lastName}
-            onChange={handleChange}
-            readOnly={true}
-          />
-
-
-        </div>
-        <div className="mb-3">
-          <label>Contact number</label>
-          <input
-          className="form-control"
-            name="phone"
-            value={customer.phone}
-            onChange={handleChange}
-            readOnly={true}
-          />
-
-          {/* <div className="mb-3">
-            <label>Address</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Enter your address"
-              name="address"
-              value={customer.address}
-              onChange={handleChange}
-            />
-            {errors.address && <p className="error-message">{errors.address}</p>}
-          </div> */}
-
-        </div>
-        <div className="mb-3">
-          <label>Email address</label>
-          <input
-            readOnly={true}
-            name="email"
-            value={customer.email}
-            className="form-control"
-            onChange={handleChange}
-          />
-
-
-        </div>
-        <div className="mb-3">
-          <label>Father's name</label>
-          <input
-          className="form-control"
-            readOnly={true}
-            name="fatherName"
-            value={customer.fatherName}
-            onChange={handleChange}
-          />
-
-
-        </div>
-        <div className="mb-3">
-          <label>Aadhar number</label>
-          <input
-          className="form-control"
-            readOnly={true}
-            name="aadhar"
-            value={customer.aadhar}
-            onChange={handleChange}
-          />
-
-        </div>
-        <div className="mb-3">
-          <label>Date of Birth</label>
-          <input
-          className="form-control"
-            name="dob"
-            value={customer.dob}
-            onChange={handleChange}
-            readOnly={true} />
-
-
-        </div>
-        <div className="mb-3">
-          <label>Balance</label>
-          <input
-            type="number"
-            className="form-control"
-            placeholder="Enter account balance"
-            name="balance"
-            value={account.balance}
-            onChange={handleChange}
-          />
-
-          {errors.balance && <p className="error-message">{errors.balance}</p>}
-        </div>
-        <div className="mb-3">
-          <label>Transaction Password</label>
-          <input
-            type="password"
-            className="form-control"
-
-            name="transPassword"
-            value={account.transPassword}
-            onChange={handleChange}
-            placeholder="Enter transaction password"
-          />
-          {errors.transPassword && <p className="error-message">{errors.transPassword}</p>}
-
-        </div>
-        <div >
-          {/* className="d-grid" */}
-          <Button type="submit" variant='light'>
-            Submit
-          </Button>
-
-        </div>
       </form>
+    </div>
 
-    </div>
-    </div>
-    // </div>
   );
 };
 
