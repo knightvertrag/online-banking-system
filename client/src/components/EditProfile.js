@@ -1,6 +1,7 @@
 import React,{ useEffect, useState } from 'react'
 import { useParams,useNavigate } from 'react-router-dom';
 import CustomerService from '../service/CustomerService';
+import { Button } from 'react-bootstrap';
 
 
 const EditProfile = ({profile}) => {
@@ -16,6 +17,7 @@ const EditProfile = ({profile}) => {
     const [aadhar,setAadhar]=useState('');
     const [email,setEmail]=useState('');
     const [fatherName,setFatherName]=useState('');
+    const [address,setAddress]=useState('');
 
     const [errors, setErrors] = useState({});
 
@@ -30,6 +32,7 @@ const EditProfile = ({profile}) => {
                setPhone(customer.phone);
                setFatherName(customer.fatherName);
                setLastName(customer.lastName);
+               setAddress(customer.address);
             });
 
     }, [id]);      
@@ -40,7 +43,7 @@ const EditProfile = ({profile}) => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
-              const customer = { firstName, lastName, fatherName, phone, dob,email,aadhar };
+              const customer = { firstName, lastName, fatherName, phone, dob,email,aadhar,address };
               await CustomerService.updateCustomer(customer,id);
               alert("Details have been updated");
               setTimeout(() => {
@@ -85,6 +88,10 @@ const EditProfile = ({profile}) => {
     const changeDobHandler = (event) => {
         setDob(event.target.value);
     };
+    
+    const changeAddressHandler = (event) => {
+      setDob(event.target.value);
+  };
 
     const cancel = () => {
         navigate('/dashboard');
@@ -95,6 +102,10 @@ const EditProfile = ({profile}) => {
     
         if (!aadhar) {
           validationErrors.aadhar = 'Aadhar is required.';
+        }
+
+        if (!address) {
+          validationErrors.address = 'Aadhar is required.';
         }
     
         if (!dob) {
@@ -222,8 +233,21 @@ const EditProfile = ({profile}) => {
               {errors.dob && <p className="error-message">{errors.dob}</p>}
 
           </div>
-          <button className="btn btn-success" onClick={UpdateCustomer}>Update</button>
-          <button className="btn btn-danger" onClick={cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+          <div className="mb-3">
+            <label>Address</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Address"
+              name="address"
+              value={address}
+              onChange={changeAddressHandler}
+            />
+            {errors.address && <p className="error-message">{errors.address}</p>}
+
+          </div>
+          <Button variant='light' onClick={UpdateCustomer}>Update</Button>
+          <Button variant='light' onClick={cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</Button>
         </form>
        
       </div>

@@ -5,6 +5,7 @@ import "./Auth.css";
 import "./OpenAccount.css";
 import FormInput from "./FormInput";
 import { Button } from "bootstrap";
+
 import AccountsService from "../service/AccountsService";
 
 
@@ -117,6 +118,7 @@ const OpenAccount = ({ profile }) => {
         <div className="view-profile-form-row">
           <FormInput readOnly={true} title="Aadhar" type="text" name="aadhar" value={customer.aadhar} onChange={handleChange} />
           <FormInput readOnly={true} title="Date of Birth" type="date" name="dob" value={customer.dob} onChange={handleChange} />
+
         </div>
         <div className="view-profile-form-row">
           <FormInput title={`Balance`} type={`number`} name="balance" value={account.balance} onChange={handleChange} errors={errors.balance}/>
@@ -130,6 +132,7 @@ const OpenAccount = ({ profile }) => {
           Submit
         </button>
         {successMessage && <p className="success-message">{successMessage}</p>}
+
       </form>
     </div>
 

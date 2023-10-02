@@ -61,6 +61,10 @@ const ViewProfile = ({profile}) => {
                         <label>Aadhar No. :</label>
                         <div class="text-success fw-bolder">{customer.aadhar}</div><hr/>
                     </div>
+                    <div className="row">
+                        <label>Address :</label>
+                        <div class="text-success fw-bolder">{customer.address}</div><hr/>
+                    </div>
                   
                 </div>
                 <div className = "row justify-content-center">

@@ -51,6 +51,9 @@ public class Customer {
 	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dob;
 	
+	@Column(nullable=false)
+	private String address;
+	
 	@OneToMany(cascade=CascadeType.ALL ,mappedBy="customer")
 	private List<Account> accounts;
 	
@@ -171,6 +174,20 @@ public class Customer {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+	
+	
+
+
+
+	public String getAddress() {
+		return address;
+	}
+
+
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 

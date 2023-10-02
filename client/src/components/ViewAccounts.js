@@ -22,7 +22,7 @@ const ViewAccounts = () => {
 
   return (
     <div>
-      <div className="row justify-content-center">
+      <div style={{marginTop:"5em"}} className="row justify-content-center">
         {accounts.length > 0 ? (
           <table className="table table-bordered table-striped w-auto">
           <thead>

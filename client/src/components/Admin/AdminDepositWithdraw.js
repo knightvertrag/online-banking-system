@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import AdminService from "../../service/AdminService";
 import "../Login.css"
+import { useNavigate } from "react-router-dom";
 const AdminDepositWithdraw = ({}) => {
     
     const [transact, setTransact] = useState('');
@@ -9,6 +10,8 @@ const AdminDepositWithdraw = ({}) => {
     const [successMessage , setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
   
+    const history = useNavigate();
+
     const handleDeposit = async () => {
       if (!accntNo || !amount) {
         setErrorMessage('Please Enter both Account No and Amount');
@@ -19,13 +22,22 @@ const AdminDepositWithdraw = ({}) => {
       try {
         const apiResponse = await AdminService.deposit(transact);
         console.log('API response: ', apiResponse);
-        setSuccessMessage(apiResponse.data);
+        if (apiResponse.status === 200){
+        setSuccessMessage(apiResponse.data);}
+        else if(apiResponse.status === 400){
+          setErrorMessage(apiResponse.data);
+        } 
+        else if(apiResponse.status === 500){
+          setErrorMessage(apiResponse.data.message);
+        }
+        else {
+          setErrorMessage(apiResponse.data);
+        }
         
       }
       catch (error) {
-        console.error('Deposit error: ', error);
-        setErrorMessage('An error occured during Deposit');
-      }
+        setErrorMessage(error);
+}
     }
     const handleWithdraw = async () => {
         if (!accntNo || !amount) {
@@ -38,11 +50,14 @@ const AdminDepositWithdraw = ({}) => {
           const apiResponse = await AdminService.withdraw(transact);
           console.log('API response: ', apiResponse);
           setSuccessMessage(apiResponse.data);
+          setTimeout(() => {
+            history("/adminDashboard");
+          }, 1000);
           
         }
         catch (error) {
           console.error('Withdraw error: ', error);
-          setErrorMessage('An error occured during Withdraw');
+          setErrorMessage("Withdraw failed!");
         }
       }
     return (
@@ -82,7 +97,7 @@ const AdminDepositWithdraw = ({}) => {
               <button type="submit" className="btn btn-primary" onClick={handleWithdraw}>
                 Withdraw
               </button>
-  
+             
               {errorMessage && <p className='error-message'>{errorMessage}</p>}
               {successMessage && <p className='successMessage'>{successMessage}</p>}
 

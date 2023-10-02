@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AdminService from '../../service/AdminService';
+import { Button } from "react-bootstrap";
 import "../Login.css"
 
 const AdminDelete = () => {
@@ -36,8 +37,8 @@ const AdminDelete = () => {
         />
         <br />
 
-        <button className="btn btn-primary" onClick={handleDeactivate} style={{"margin":"10px"}}>Deactivate</button>
-        <button className="btn btn-primary" onClick={handleActivate}>Activate</button>
+        <Button variant='light' onClick={handleDeactivate} style={{"margin":"10px"}}>Deactivate</Button>
+        <Button variant='light' onClick={handleActivate}>Activate</Button>
 
       </div>
 

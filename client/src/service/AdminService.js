@@ -69,9 +69,11 @@ class AdminService {
       const response = await axios.post(
         `http://localhost:8085/obs/admin/deposit/` + transact.accntNo + `/` + transact.amount
       );
+     
       return response
     } catch(error){
       console.error("Fetch error: ", error);
+      return error.response;
     }
   }
   static async withdraw(transact){
