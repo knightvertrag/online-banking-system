@@ -45,7 +45,7 @@ function App() {
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn}/>} />
             <Route path="/register" element={<Register />} />
             <Route path="/openaccount" element={<OpenAccount profile={profile}/>} />
-            <Route path="/dashboard" element={<Dashboard fetchProfile={fetchProfile} profile={profile}/>} /> 
+            <Route path="/dashboard" element={<Dashboard  fetchProfile={fetchProfile} isLoggedIn={isLoggedIn} profile={profile} />} />
             <Route path="/dashboardhome" element={<DashboardHome profile={profile}/>}></Route>
             <Route path="/payment" element={<PaymentForm />} />
             <Route path="viewProfile/:id" element={<ViewProfile profile={profile}/>} />

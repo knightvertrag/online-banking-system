@@ -83,13 +83,17 @@ const Dashboard = ({fetchProfile, isLoggedIn, profile}) => {
 // );
 
   return (
+    
     <div className="home">
-        {/* <Header isLoggedIn={isLoggedIn} setIsLoggedIn={null}/> */}
-        {/* {console.log(profile.custId)} */}
+     {console.log(isLoggedIn)}
+     { isLoggedIn ? (
+       
         <div className="dashboard-main">
             <Sidebar setSelectedPage={setSelectedPage}/>
             <Content selectedPage={selectedPage} profile={profile} setSelectedPage={setSelectedPage}/>
-        </div>
+        </div>) : (
+          <h1> Login to access dashboard! </h1>
+        )}
     </div>
   );
 };

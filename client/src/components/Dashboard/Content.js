@@ -34,6 +34,7 @@ const Content = ({selectedPage, profile, setSelectedPage}) => {
             page = <ViewTransactions />
             break;
         default:
+            page = <DashboardHome />
             break;
     }
     

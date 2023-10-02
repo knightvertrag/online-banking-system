@@ -18,8 +18,9 @@ class TransactionsService {
       const response = await axios.get(
         "http://localhost:8085/obs/transactions/transactions/" + accNo
       );
-
+      console.log(response.data);
       return response;
+      
     } catch (error) {
       console.error("Fetch transactions error: ", error);
     }
