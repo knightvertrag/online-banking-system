@@ -44,7 +44,7 @@ const ViewTransactions = () => {
           {value.length > 0 && <Tab value={value} accounts={accounts} />}
         </>
       ) : (
-        <h3> No accounts</h3>
+        <h3> No transactions</h3>
       )}
     </div>
   );

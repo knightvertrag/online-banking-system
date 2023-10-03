@@ -10,6 +10,7 @@ class TransactionsService {
       return response.data;
     } catch (error) {
       console.error("Create Transaction Error: ", error);
+      return error.response;
     }
   }
 
