@@ -5,10 +5,12 @@ import "../Login.css"
 
 const AdminDelete = () => {
   const [accntNo, setaccntNo] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const handleDeactivate = async () => {
     try {
       const deactivate = await AdminService.deactivateAccount(accntNo);
       console.log('API response: ', deactivate);
+      setSuccessMessage("Account deactivated");
     } catch (error) {
       console.error("Deactivate error")
     }
@@ -17,6 +19,8 @@ const AdminDelete = () => {
     try {
       const activate = await AdminService.activateAccount(accntNo);
       console.log('API response: ', activate);
+      setSuccessMessage("Account activated");
+
     } catch (error) {
       console.error("Error activating account")
     }
@@ -39,7 +43,7 @@ const AdminDelete = () => {
 
         <Button variant='light' onClick={handleDeactivate} style={{"margin":"10px"}}>Deactivate</Button>
         <Button variant='light' onClick={handleActivate}>Activate</Button>
-
+        {successMessage && <p style={{"color":"green"}}>{successMessage}</p>}
       </div>
 
     </div></>

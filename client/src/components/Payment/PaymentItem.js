@@ -68,7 +68,9 @@ const PaymentItem = ({ value, accounts, setSelectedPage }) => {
         const apiResponse = await TransactionsService.createTransaction(transaction);
         console.log('API response: ', apiResponse);
         if (apiResponse.status === 200){
-          setSuccessMessage(apiResponse.data);}
+          setSuccessMessage(apiResponse.data);
+          alert("Transaction successful");
+        }
           else if(apiResponse.status === 400){
             setErrorMessage(apiResponse.data);
           } 

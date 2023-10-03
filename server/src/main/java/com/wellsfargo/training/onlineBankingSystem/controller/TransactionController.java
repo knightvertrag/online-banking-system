@@ -3,6 +3,7 @@ package com.wellsfargo.training.onlineBankingSystem.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,7 +41,7 @@ public class TransactionController {
 		String remarks=transactionRequest.getRemarks();
 		Transaction newTransaction = transService.createTransaction(amount, senderAcc, receiverAcc,transPassword,remarks);
 		
-		return ResponseEntity.ok(newTransaction);
+		return new ResponseEntity<Transaction>(newTransaction, HttpStatus.OK);
 		
 	}
 	
