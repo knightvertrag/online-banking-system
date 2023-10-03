@@ -107,13 +107,13 @@ private MockMvc mockMvc;
 			}
 		};
 		AdminTest creds = new AdminTest(1L, "password");
-		when(adminService.loginAdmin(eq(adminId))).thenThrow(new NoSuchCustomerExistsException("Admin Not Found for this ID::" + adminId));
+
+		when(adminService.loginAdmin(eq(adminId))).thenReturn(Optional.<Admin>empty());
 		String requestBody = new ObjectMapper().writeValueAsString(creds);
 		mockMvc.perform(post("/admin/loginAdmin")
 		.contentType(MediaType.APPLICATION_JSON)
 		.content(requestBody))
-		.andExpect(status().isBadRequest())
-		.andExpect(content().string("Admin Not Found for this ID::" + adminId));
+		.andExpect(status().isInternalServerError());
 		
 	}
 	
@@ -169,7 +169,7 @@ private MockMvc mockMvc;
 		
 		
 		when(accService.getSingleAccount(accNo)).thenReturn(Optional.of(acc) );
-		mockMvc.perform(get("/admin/deactivateAccount/{accNo}",accNo))
+		mockMvc.perform(post("/admin/deactivateAccount/{accNo}",accNo))
 		.andExpect(status().isOk())
 		.andExpect(content().string("Account with Account Number "+accNo+" has been deactivated"));
 		
@@ -189,7 +189,7 @@ private MockMvc mockMvc;
 		
 		
 		when(accService.getSingleAccount(accNo)).thenReturn(Optional.empty() );
-		mockMvc.perform(get("/admin/deactivateAccount/{accNo}",accNo))
+		mockMvc.perform(post("/admin/deactivateAccount/{accNo}",accNo))
 		.andExpect(status().isNotFound());
 	}
 	

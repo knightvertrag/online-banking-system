@@ -121,6 +121,7 @@ public class CustomerControllerTest {
 		customer.setFatherName("Henry Doe");
 		customer.setPhone("9876543210");
 		customer.setPassword("password");
+		customer.setAddress("Address");
 		SimpleDateFormat df= new SimpleDateFormat("yyyy-MM-dd"); // java.text
 		Date dob=new Date(df.parse("1970-03-12").getTime()); // java.sql
 		customer.setDob(dob);
@@ -135,6 +136,7 @@ public class CustomerControllerTest {
 		newCustomer.setLastName("Mathew");
 		newCustomer.setFatherName("Ryan Mathew");
 		newCustomer.setPhone("9876553210");
+		newCustomer.setAddress("Address");
 		SimpleDateFormat df2= new SimpleDateFormat("yyyy-MM-dd"); // java.text
 		Date dob2=new Date(df2.parse("1970-03-14").getTime()); // java.sql
 		newCustomer.setDob(dob2);
