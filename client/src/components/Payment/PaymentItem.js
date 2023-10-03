@@ -33,7 +33,7 @@ const PaymentItem = ({ value, accounts, setSelectedPage }) => {
 
   const [errors, setErrors] = useState({});
   const [successMessage, setSuccessMessage] = useState("");
-
+  const [errorMessage, setErrorMessage] = useState("");
   const validateForm = () => {
     let validationErrors = {};
 
@@ -65,12 +65,23 @@ const PaymentItem = ({ value, accounts, setSelectedPage }) => {
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await TransactionsService.createTransaction(transaction);
-        setSuccessMessage("Transaction successful!");
-        alert("Transaction Successfull");
-        setTimeout(() => {
-          setSelectedPage("View Transactions");
-        }, 3000);
+        const apiResponse = await TransactionsService.createTransaction(transaction);
+        console.log('API response: ', apiResponse);
+        if (apiResponse.status === 200){
+          setSuccessMessage(apiResponse.data);}
+          else if(apiResponse.status === 400){
+            setErrorMessage(apiResponse.data);
+          } 
+          else if(apiResponse.status === 500){
+            setErrorMessage(apiResponse.data.message);
+          }
+          else {
+            setErrorMessage(apiResponse.data);
+          }
+          
+          setTimeout(() => {
+            setSelectedPage("Make Transaction");
+          }, 5000);
       } catch (error) {
         console.error("Transaction error", error);
         setSuccessMessage("An error occurred during transaction.");
@@ -192,6 +203,8 @@ const PaymentItem = ({ value, accounts, setSelectedPage }) => {
             <button type="submit" className="btn btn-primary">
               Submit
             </button>
+            {errorMessage && <p className='error-message'>{errorMessage}</p>}
+
           </div>
         </form>
       </div>
